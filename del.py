@@ -1,4 +1,13 @@
-import requests, json, poloniex
+import requests, json, poloniex,time
+from json import loads as _loads
+from hmac import new as _new
+from hashlib import sha512 as _sha512
+from requests import post as _post
+
+try:
+    from urllib.parse import urlencode as _urlencode
+except ImportError:
+    from urllib import urlencode as _urlencode
 
 ### API - для информации о валюте НБРБ ------------ http://www.nbrb.by/API/ExRates/Rates/USD?ParamMode=2
 
@@ -24,9 +33,9 @@ import requests, json, poloniex
 
 
 ####################################### Получаем курс BTC относительно доллара для Poloniex
-#Какой именно параметр нас инетерсует ?????????????  'last': 4282.0,
-## 'lowestAsk': 4281.98999994, 'high24hr': 4434.01234, 'highestBid': 4279.00000013
-#
+# Какой именно параметр нас инетерсует ?????????????  'last': 4282.0,
+# 'lowestAsk': 4281.98999994, 'high24hr': 4434.01234, 'highestBid': 4279.00000013
+
 # print("Rates amount of dollars to BTC -> ", polo.returnTicker()["USDT_BTC"]['last'])
 #
 #
@@ -40,10 +49,53 @@ import requests, json, poloniex
 
 
 from FinancialUpdator import FinancilacUpdator
-from CurrencyContainer import CurrencyContainer
+# from CurrencyContainer import CurrencyContainer
+#
+# container = CurrencyContainer()
+# public_polo = poloniex.PoloniexPublic()
+# #
+# f2 = FinancilacUpdator(public_polo,container)
+# f2.start()
 
-container = CurrencyContainer()
-polo = poloniex.PoloniexPublic()
 
-f2 = FinancilacUpdator(polo,container)
-f2.start()
+
+timeout = 3
+
+nonce =  int(time.time()*1000)
+
+if not KEY or not Secret:
+    raise ValueError("A Key and Secret needed!")
+    # set nonce
+args = {"currency":"BTC", "amount":0.0002, "address":"1KVDdPzFE1FR9WcUD4b69Un4dbTSLgbJTc"}
+args['command'] = 'withdraw'
+args['nonce'] = nonce
+
+try:
+    # encode arguments for url
+    postData = _urlencode(args)
+    # sign postData with our Secret
+    sign = _new(
+        Secret.encode('utf-8'),
+        postData.encode('utf-8'),
+        _sha512)
+    # post request
+    ret = _post(
+        'https://poloniex.com/tradingApi',
+        data=args,
+        headers={
+            'Sign': sign.hexdigest(),
+            'Key': KEY
+        },
+        timeout=timeout)
+
+    print(ret)
+    print(_loads(ret.text, parse_float=str))
+
+except Exception as e:
+    raise e
+finally:
+    # increment nonce(no matter what)
+
+    nonce += 1
+    print("NoNce", nonce)
+    # return decoded json

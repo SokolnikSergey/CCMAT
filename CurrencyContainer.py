@@ -49,7 +49,6 @@ class CurrencyContainer(CurrencyPublisher):
                 subscriber.updated_tax_for_exchange(self.__tax_for_exchange)
 
     def update_uah_btc(self):
-        print(2)
         if self.__subscribers:
             for subscriber in self.__subscribers:
                 subscriber.updated_uah_btc(self.__uah_btc)
