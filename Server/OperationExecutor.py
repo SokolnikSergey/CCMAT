@@ -1,0 +1,60 @@
+import time
+from hashlib import sha512 as _sha512
+from hmac import new as _new
+from json import loads as _loads
+
+from requests import post as _post
+
+from ENUMS.CURRENCIES import CURRENCIES
+
+try:
+    from urllib.parse import urlencode as _urlencode
+except ImportError:
+    from urllib import urlencode as _urlencode
+
+class OperationExecutor:
+
+    def __init__(self,api_key,secret_key, timeout = 15):
+        self.__api_key = api_key
+        self.__secret_key = secret_key
+        self.__timeout = timeout
+
+    def get_nonce(self):
+        return int(time.time() * 1000)
+
+    def get_currency_name(self,currency):
+        if currency in CURRENCIES:
+            currency_name = CURRENCIES.BitCoin.value
+            return currency_name
+        return None
+
+
+    def withdraw(self,currency,reciever_address,amount_of_crypto):
+        currency_name = self.get_currency_name(currency)
+
+        args = {"currency": currency_name, "amount": amount_of_crypto, "address": reciever_address,
+                'command' : 'withdraw' , 'nonce' : self.get_nonce() }
+
+        try:
+            # encode arguments for url
+            postData = _urlencode(args)
+            # sign postData with our Secret
+            sign = _new(
+                self.__secret_key.encode('utf-8'),
+                postData.encode('utf-8'),
+                _sha512)
+            # post request
+            ret = _post(
+                'https://poloniex.com/tradingApi',
+                data=args,
+                headers={
+                    'Sign': sign.hexdigest(),
+                    'Key': self.__api_key
+                },
+                timeout=self.__timeout)
+
+            return _loads(ret.text, parse_float=str)
+
+        except Exception as ex:
+            print(ex)
+            return None
