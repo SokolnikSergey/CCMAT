@@ -33,15 +33,11 @@ class ClientBankomat(QObject):
     def write_data_to_server(self,str_data): ##This slot can be used at any case , when client want send data to server
         self.__client.write(QByteArray().append(str_data))
 
-
-
-app = QApplication([])
-
-c = ClientBankomat()
-i = InterruptConvertor()
-
-
-
-c.write_data_to_server("Hello,my friend")
-
-sys.exit(app.exec_())
+#
+#
+# app = QApplication([])
+#
+# c = ClientBankomat()
+# i = InterruptConvertor()
+#
+# sys.exit(app.exec_())

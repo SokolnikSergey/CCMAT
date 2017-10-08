@@ -19,7 +19,7 @@ class FinancialUpdator(Thread):
 
     def run(self):
         while(self.do):
-            
+
             uah_btc = CurrencyOperations.get_btc_usd(self.__polo)
             uah_dollar = CurrencyOperations.get_dol_uah()
             transactions_fee =  CurrencyOperations.get_btc_transaction_fee(self.__polo)

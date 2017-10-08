@@ -16,3 +16,5 @@ class SignalsBinder(QObject):
 
     def snapping_signals_interrupt_convertor(self):
         self.__interrupt_convertor.inform_me.connect(self.__session_data_configurator.inform_me)
+        self.__interrupt_convertor.actual_data.connect(self.__session_data_configurator.amount_kept)
+        self.__interrupt_convertor.withdraw_complete.connect(self.__session_data_configurator.withdraw_complete)

@@ -58,3 +58,51 @@ class OperationExecutor:
         except Exception as ex:
             print(ex)
             return None
+        
+        
+    def get_btc_balance(self):
+    
+        args = {'command': 'returnBalances', 'nonce': self.get_nonce()}
+    
+        try:
+            # encode arguments for url
+            postData = _urlencode(args)
+            # sign postData with our Secret
+            sign = _new(
+                self.__secret_key.encode('utf-8'),
+                postData.encode('utf-8'),
+                _sha512)
+            # post request
+            ret = _post(
+                'https://poloniex.com/tradingApi',
+                data=args,
+                headers={
+                    'Sign': sign.hexdigest(),
+                    'Key': self.__api_key
+                },
+                timeout=self.__timeout)
+        
+            return _loads(ret.text, parse_float=str)['BTC']
+    
+        except Exception as ex:
+            print(ex)
+            return None
+        
+        
+###########################################
+    def  get_remain_money(self,currency):
+        if CURRENCIES.BitCoin == currency:
+            pass
+        
+    def get_owners_fee(self,currency):
+        if CURRENCIES.BitCoin == currency:
+            pass
+
+    def inform_me(self,currency):
+        
+        remain_money = self.get_remain_money(currency)
+        owners_fee = self.get_owners_fee(currency)
+        
+        return {"data":{"currency" : CURRENCIES.BitCoin, "remain_money": remain_money,"owners_fee":owners_fee},"response_errors": [] }
+    
+#############################

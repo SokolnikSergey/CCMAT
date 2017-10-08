@@ -53,4 +53,3 @@ s = Subs(container)
 
 f2 = FinancialUpdator(public_polo,container)
 f2.start()
-
