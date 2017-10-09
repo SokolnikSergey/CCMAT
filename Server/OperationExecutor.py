@@ -14,10 +14,12 @@ except ImportError:
 
 class OperationExecutor:
 
-    def __init__(self,api_key,secret_key, timeout = 15):
+    def __init__(self,api_key,secret_key,aux_info_container = None, timeout = 15):
         self.__api_key = api_key
         self.__secret_key = secret_key
         self.__timeout = timeout
+        
+        self.__aux_info_container = aux_info_container
 
     def get_nonce(self):
         return int(time.time() * 1000)

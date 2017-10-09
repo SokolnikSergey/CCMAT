@@ -6,24 +6,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bad39d0-bda2-490c-a137-7e35e078b318" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ENUMS/ERRORS.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/Action.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/ActionPerformer.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/ActionQueue.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/BalanceInformationConfigurator.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/BalanceInformationContainer.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/BalanceUpdator.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/InterruptConvertor.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/SignalsBinder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Interfaces/AuxiliaryInformationPublisher.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Interfaces/AuxiliaryInformationSubscriber.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Server/AuxiliaryInformationContainer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/ClientBankomat.py" afterPath="$PROJECT_DIR$/Client/ClientBankomat.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/FinancialUpdator.py" afterPath="$PROJECT_DIR$/Client/FinancialUpdator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/CurrencyContainer.py" afterPath="$PROJECT_DIR$/Client/CurrencyContainer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/InterrupConvertor.py" afterPath="$PROJECT_DIR$/Client/InterrupConvertor.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/SesionDataContainer.py" afterPath="$PROJECT_DIR$/Client/SesionDataContainer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/SessionDataConfigurator.py" afterPath="$PROJECT_DIR$/Client/SessionDataConfigurator.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/SignalsBinder.py" afterPath="$PROJECT_DIR$/Client/SignalsBinder.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/Subs.py" afterPath="$PROJECT_DIR$/Client/Subs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Interfaces/CurrencyPublisher.py" afterPath="$PROJECT_DIR$/Interfaces/CurrencyPublisher.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Interfaces/CurrencySubscriber.py" afterPath="$PROJECT_DIR$/Interfaces/CurrencySubscriber.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Interfaces/SessionDataPublisher.py" afterPath="$PROJECT_DIR$/Interfaces/SessionDataPublisher.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Interfaces/SessionDataSubscriber.py" afterPath="$PROJECT_DIR$/Interfaces/SessionDataSubscriber.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/OperationExecutor.py" afterPath="$PROJECT_DIR$/Server/OperationExecutor.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/Server.py" afterPath="$PROJECT_DIR$/Server/Server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/del.py" afterPath="$PROJECT_DIR$/del.py" />
     </list>
     <ignored path="ССMAT.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,65 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BalanceInformationConfigurator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/BalanceInformationConfigurator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OperationExecutor.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/OperationExecutor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="78" column="25" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SignalsBinder.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/SignalsBinder.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InterruptConvertor.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/InterruptConvertor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientBankomat.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/ClientBankomat.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ActionPerformer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/ActionPerformer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
+            <state relative-caret-position="119">
+              <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -109,41 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InterrupConvertor.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/InterrupConvertor.py">
+      <file leaf-file-name="OperationExecutor.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Server/OperationExecutor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Server/Server.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SignalsBinder.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/SignalsBinder.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BalanceUpdator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/BalanceUpdator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="74" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
+            <state relative-caret-position="578">
+              <caret line="107" column="104" selection-start-line="107" selection-start-column="104" selection-end-line="107" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -176,14 +89,7 @@
         <option value="$PROJECT_DIR$/Server.py" />
         <option value="$PROJECT_DIR$/ACTIONS.py" />
         <option value="$PROJECT_DIR$/ENUMS/ACTIONS.py" />
-        <option value="$PROJECT_DIR$/Interfaces/SessionDataPublisher.py" />
-        <option value="$PROJECT_DIR$/Interfaces/SessionDataSubscriber.py" />
-        <option value="$PROJECT_DIR$/Client/SesionDataContainer.py" />
-        <option value="$PROJECT_DIR$/Interfaces/CurrencyPublisher.py" />
-        <option value="$PROJECT_DIR$/Interfaces/CurrencySubscriber.py" />
         <option value="$PROJECT_DIR$/Client/CurrencyOperations.py" />
-        <option value="$PROJECT_DIR$/Client/Subs.py" />
-        <option value="$PROJECT_DIR$/Client/CurrencyContainer.py" />
         <option value="$PROJECT_DIR$/Client/FinancialUpdator.py" />
         <option value="$PROJECT_DIR$/Server/BalanceInformationContainer.py" />
         <option value="$PROJECT_DIR$/Server/Action.py" />
@@ -193,22 +99,33 @@
         <option value="$PROJECT_DIR$/ENUMS/ERRORS.py" />
         <option value="$PROJECT_DIR$/Server/InterruptConvertor.py" />
         <option value="$PROJECT_DIR$/Server/SignalsBinder.py" />
-        <option value="$PROJECT_DIR$/Client/SessionDataConfigurator.py" />
         <option value="$PROJECT_DIR$/Server/Server.py" />
         <option value="$PROJECT_DIR$/Client/ClientBankomat.py" />
-        <option value="$PROJECT_DIR$/Client/SignalsBinder.py" />
         <option value="$PROJECT_DIR$/Server/BalanceInformationConfigurator.py" />
-        <option value="$PROJECT_DIR$/Server/ActionPerformer.py" />
-        <option value="$PROJECT_DIR$/Client/InterrupConvertor.py" />
+        <option value="$PROJECT_DIR$/Client/CurrencyContainer.py" />
+        <option value="$PROJECT_DIR$/Server/AuxiliaryInformationConfigurator.py" />
+        <option value="$PROJECT_DIR$/Client/Subs.py" />
+        <option value="$PROJECT_DIR$/Interfaces/SessionDataSubscriber.py" />
+        <option value="$PROJECT_DIR$/Interfaces/CurrencyPublisher.py" />
+        <option value="$PROJECT_DIR$/Interfaces/SessionDataPublisher.py" />
+        <option value="$PROJECT_DIR$/Interfaces/CurrencySubscriber.py" />
+        <option value="$PROJECT_DIR$/Interfaces/AuxiliaryInformationPublisher.py" />
+        <option value="$PROJECT_DIR$/Interfaces/AuxiliaryInformationSubscriber.py" />
+        <option value="$PROJECT_DIR$/Server/AuxiliaryInformationContainer.py" />
         <option value="$PROJECT_DIR$/Server/OperationExecutor.py" />
+        <option value="$PROJECT_DIR$/Server/ActionPerformer.py" />
+        <option value="$PROJECT_DIR$/Client/SesionDataContainer.py" />
+        <option value="$PROJECT_DIR$/Client/SessionDataConfigurator.py" />
+        <option value="$PROJECT_DIR$/Client/SignalsBinder.py" />
+        <option value="$PROJECT_DIR$/Client/InterrupConvertor.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1358" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1456" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -236,7 +153,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -285,6 +201,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -551,26 +468,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1569247" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14799154" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2536825" sideWeight="0.5029762" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22054054" sideWeight="0.49702382" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39973083" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22054054" sideWeight="0.49702382" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39973083" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -593,52 +510,15 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="34" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Client/CurrencyOperations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Interfaces/CurrencySubscriber.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Subs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/del.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1438#1453#0" expanded="true" />
-            <marker date="1507390101588" expanded="true" signature="1438:1741" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/del.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1438#1453#0" expanded="true" />
-            <marker date="1507390101588" expanded="true" signature="1438:1741" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -703,10 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
           <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding>
-            <element signature="e#1438#1453#0" expanded="true" />
-            <marker date="1507390101588" expanded="true" signature="1438:1741" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -714,10 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
-          <folding>
-            <element signature="e#1438#1453#0" expanded="true" />
-            <marker date="1507390101588" expanded="true" signature="1438:1741" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -768,10 +640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1438#1453#0" expanded="true" />
-            <marker date="1507390101588" expanded="true" signature="1438:1741" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -779,10 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1438#1453#0" expanded="true" />
-            <marker date="1507390101588" expanded="true" signature="1438:1741" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -801,86 +665,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Interfaces/SessionDataPublisher.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Interfaces/SessionDataSubscriber.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/SesionDataContainer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Interfaces/CurrencySubscriber.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Interfaces/CurrencyPublisher.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Subs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/CurrencyOperations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/CurrencyContainer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="75" selection-start-line="48" selection-start-column="75" selection-end-line="48" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/FinancialUpdator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/BalanceInformationContainer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/del.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="25" column="64" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
-          <folding>
-            <element signature="e#1438#1453#0" expanded="true" />
-            <marker date="1507390101588" expanded="true" signature="1438:1741" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -888,7 +676,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -908,36 +695,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/SessionDataConfigurator.py">
+    <entry file="file://$PROJECT_DIR$/Server/BalanceInformationConfigurator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/ActionQueue.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+        <state relative-caret-position="374">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
           <folding>
-            <element signature="e#1#33#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/ClientBankomat.py">
+    <entry file="file://$PROJECT_DIR$/Server/Server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/SignalsBinder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+        <state relative-caret-position="52">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -950,6 +721,170 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Server/ActionQueue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+          <folding>
+            <element signature="e#1#33#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/BalanceInformationContainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/AuxiliaryInformationConfigurator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Interfaces/AuxiliaryInformationPublisher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Interfaces/CurrencyPublisher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Interfaces/SessionDataPublisher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Interfaces/CurrencySubscriber.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Interfaces/SessionDataSubscriber.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Interfaces/AuxiliaryInformationSubscriber.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/AuxiliaryInformationContainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/FinancialUpdator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Subs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/SignalsBinder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="38" column="119" selection-start-line="38" selection-start-column="119" selection-end-line="38" selection-end-column="119" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/InterrupConvertor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CurrencyOperations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/InterruptConvertor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="30" column="56" selection-start-line="27" selection-start-column="12" selection-end-line="30" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/ClientBankomat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="32" column="28" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/CurrencyContainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="72" column="49" selection-start-line="72" selection-start-column="49" selection-end-line="72" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/SessionDataConfigurator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/SesionDataContainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Server/SignalsBinder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -958,56 +893,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/InterruptConvertor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/BalanceInformationConfigurator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server/ActionPerformer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
+        <state relative-caret-position="119">
+          <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/InterrupConvertor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server/OperationExecutor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="78" column="25" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/Server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+        <state relative-caret-position="578">
+          <caret line="107" column="104" selection-start-line="107" selection-start-column="104" selection-end-line="107" selection-end-column="104" />
           <folding />
         </state>
       </provider>

@@ -1,4 +1,6 @@
 class SessionDataPublisher:
+    
+    subscribers = []
 
     def remaining_money_on_server_updated(self):
         pass

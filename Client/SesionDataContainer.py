@@ -86,7 +86,6 @@ class SessionDataContainer(SessionDataPublisher):
 
             subscriber.reciever_address_update(self.__reciever_address)
             subscriber.owners_fee_update(self.__owners_fee)
-            subscriber.transactions_fee_update(self.__transactions_fee)
             subscriber.currency_for_operation_update(self.__currency_for_operation)
             subscriber.remaining_money_on_server_update(self.__remaining_money_on_server)
             subscriber.recieved_money_update(self.__recieved_money)

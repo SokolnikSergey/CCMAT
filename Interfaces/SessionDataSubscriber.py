@@ -1,4 +1,6 @@
 class SessionDataSubscriber:
+    
+    publisher = None
 
     def remaining_money_on_server_update(self):
         pass
@@ -18,8 +20,8 @@ class SessionDataSubscriber:
     def currency_for_operation_update(self):
         pass
 
-    def subscribe(self,subscriber):
+    def subscribe(self):
         pass
 
-    def unsubscribe(self,subscriber):
+    def unsubscribe(self):
         pass
