@@ -50,6 +50,7 @@ class CurrencyContainer(CurrencyPublisher):
         if new_owners_fee and  isinstance(new_owners_fee,(int,float)):
             self.__owners_fee = new_owners_fee
             self.owners_fee_updated()
+            print("New owners fee",new_owners_fee)
     
     def update_all(self):
         if self.__subscribers:

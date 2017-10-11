@@ -12,11 +12,12 @@ class ActionQueue(QObject):
         self.__actions = []
     
     def add_action(self,action):
-        if not self.size():
-            self.action_added.emit()
-
         if isinstance(action,Action):
             self.__actions.append(action)
+            
+        if self.size() == 1:
+            self.action_added.emit()
+
 
     def remove_action(self,action):
         if action is self.__actions:

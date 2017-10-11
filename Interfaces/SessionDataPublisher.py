@@ -5,9 +5,6 @@ class SessionDataPublisher:
     def remaining_money_on_server_updated(self):
         pass
 
-    def owners_fee_updated(self):
-        pass
-
     def transactions_fee_updated(self):
         pass
 

@@ -46,10 +46,10 @@ from Client.CurrencyContainer import CurrencyContainer
 from Client.FinancialUpdator import FinancialUpdator
 from Client.Subs import Subs
 
-container = CurrencyContainer()
-public_polo = poloniex.PoloniexPublic()
-
-s = Subs(container)
-
-f2 = FinancialUpdator(public_polo,container)
-f2.start()
+# container = CurrencyContainer()
+# public_polo = poloniex.PoloniexPublic()
+#
+# s = Subs(container)
+#
+# f2 = FinancialUpdator(public_polo,container)
+# f2.start()

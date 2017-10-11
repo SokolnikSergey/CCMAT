@@ -1,20 +1,16 @@
 from PyQt5.QtNetwork import QTcpServer,QHostAddress
 from PyQt5.QtCore import QObject,QByteArray,pyqtSignal
-from PyQt5.QtWidgets import QApplication
 
 import json
-
-import sys
-
 
 class Server(QObject):
 
     data_recieved = pyqtSignal(object,str)
 
-    def __init__(self):
+    def __init__(self,port = 8080):
         super(Server, self).__init__()
         self.__socket = QTcpServer()
-        self.__socket.listen(QHostAddress.Any,8080)
+        self.__socket.listen(QHostAddress.Any,port)
 
         self.__list_of_sockets = []
 
@@ -39,17 +35,14 @@ class Server(QObject):
     def read_data_from_socket(self):
         sender = self.sender()
         data = sender.readAll().data().decode("utf-8")
+        
         self.data_recieved.emit(sender,data)
 
 
-    def write_data_to_socket(self,dict_data,response_reciever):
+    def write_data_to_socket(self,response_reciever,dict_data):
         response_reciever.write(QByteArray().append(json.dumps(dict_data)))
         self.terminate_connection_with_bankomat(response_reciever)
         
+        
 
 
-app = QApplication([])
-
-s = Server()
-
-sys.exit(app.exec_())

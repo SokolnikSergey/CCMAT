@@ -1,5 +1,6 @@
 class BalanceInformationContainer:
-    def __init__(self,btc_balance = -1,btc_reserved = -1 ):
+    
+    def __init__(self,btc_balance = 100,btc_reserved = 0 ):
         self.__btc_balance = btc_balance
         self.__btc_reserved = btc_reserved
         
