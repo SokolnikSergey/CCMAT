@@ -18,7 +18,6 @@ class Starter:
 	
 	def __init__(self):
 		self.create_aux_objects()
-		self.start_actions()
 	
 	def create_aux_objects(self):
 		
@@ -27,6 +26,7 @@ class Starter:
 		self.__aux_info_container = AuxiliaryInformationContainer()
 		
 		self.__information_filler  = InformationFiller(self.__aux_info_container)
+		self.__information_filler.fill_container_by_file_data()
 		
 		self.__balance_information_container = BalanceInformationContainer()
 		self.__balance_information_configurator = BalanceInformationConfigurator(self.__balance_information_container)
@@ -35,18 +35,17 @@ class Starter:
 		
 		self.__interrupt_convertor = InterruptConvertor(self.__action_queue)
 		
-		self.__operation_executor = OperationExecutor("TYMLRP8Z-SG0T22XB-5IF7VU4M-U6G37O0R",
-			"f8844f0c5064fc3786ea20906faa20fd79259ba24b718f4615b6057162678c09171edc61ea4eaeb7fec73cbf918343dc2c7b43028968783b5900fd0e987b102c",
-		                self.__aux_info_container)
+		self.__operation_executor = OperationExecutor(self.__aux_info_container.api_key
+		                        ,self.__aux_info_container.secret_key,self.__aux_info_container)
 		
-		self.__action_performer = ActionPerformer(self.__action_queue,self.__operation_executor,self.__balance_information_configurator)
+		self.__action_performer = ActionPerformer(self.__action_queue,self.__operation_executor,
+		                                          self.__balance_information_configurator)
 		
 		self.__signals_binder =  SignalsBinder(self.__server,self.__interrupt_convertor,
 		                            self.__balance_information_configurator,self.__action_queue,self.__action_performer)
 	
 	
-	def start_actions(self):
-		self.__information_filler.fill_container_by_file_data()
+		
 	
 		
 app = QApplication([])

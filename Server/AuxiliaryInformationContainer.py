@@ -1,8 +1,11 @@
 from Interfaces.AuxiliaryInformationPublisher import AuxiliaryInformationPublisher
 
 class AuxiliaryInformationContainer(AuxiliaryInformationPublisher):
-	def __init__(self,owners_fee = -1):
+	def __init__(self,owners_fee = -1,api_key = None,secret_key=None):
 		self.__owners_fee = owners_fee
+		
+		self.__api_key = api_key,
+		self.__secret_key = secret_key
 		
 		self.__subscribers =[]
 		
@@ -20,6 +23,22 @@ class AuxiliaryInformationContainer(AuxiliaryInformationPublisher):
 				self.__owners_fee = float(new_owners_fee)
 			except Exception as ex:
 				pass
+			
+	@property
+	def api_key(self):
+		return self.__api_key
+	
+	@api_key.setter
+	def api_key(self,new_api_key):
+		self.__api_key = new_api_key
+	
+	@property
+	def secret_key(self):
+		return self.__secret_key
+	
+	@secret_key.setter
+	def secret_key(self, new_secret_key):
+		self.__secret_key = new_secret_key
 	
 	def update_owners_fee(self):
 		for subs in self.__subscribers:
