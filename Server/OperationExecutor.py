@@ -14,12 +14,13 @@ except ImportError:
 
 class OperationExecutor:
 
-    def __init__(self,api_key,secret_key,aux_info_container = None, timeout = 15):
+    def __init__(self,api_key,secret_key,aux_info_container = None,balance_info_container  = None, timeout = 15):
         self.__api_key = api_key
         self.__secret_key = secret_key
         self.__timeout = timeout
         
         self.__aux_info_container = aux_info_container
+        self.__balance_information_container  = balance_info_container
 
     def get_nonce(self):
         return int(time.time() * 1000)
@@ -33,7 +34,6 @@ class OperationExecutor:
 
     def withdraw(self,currency,reciever_address,amount_of_crypto):
         print("Withdraw")
-        pass
         # currency_name = self.get_currency_name(currency)
         #
         # args = {"currency": currency_name, "amount": amount_of_crypto, "address": reciever_address,
@@ -66,42 +66,41 @@ class OperationExecutor:
         return {"currency": currency, "amount": amount_of_crypto, "address": reciever_address}
         
     def get_btc_balance(self):
-        # pass
-        # args = {'command': 'returnBalances', 'nonce': self.get_nonce()}
-        #
-        # try:
-        #     # encode arguments for url
-        #     postData = _urlencode(args)
-        #     # sign postData with our Secret
-        #     sign = _new(
-        #         self.__secret_key.encode('utf-8'),
-        #         postData.encode('utf-8'),
-        #         _sha512)
-        #     # post request
-        #     ret = _post(
-        #         'https://poloniex.com/tradingApi',
-        #         data=args,
-        #         headers={
-        #             'Sign': sign.hexdigest(),
-        #             'Key': self.__api_key
-        #         },
-        #         timeout=self.__timeout)
-        #
-        #     return _loads(ret.text, parse_float=str)['BTC']
-        #
-        # except Exception as ex:
-        #     print(ex)
-        #     return None
-        return 100
-        
+     
+        args = {'command': 'returnBalances', 'nonce': self.get_nonce()}
+
+        try:
+            # encode arguments for url
+            postData = _urlencode(args)
+            # sign postData with our Secret
+            sign = _new(
+                self.__secret_key.encode('utf-8'),
+                postData.encode('utf-8'),
+                _sha512)
+            # post request
+            ret = _post(
+                'https://poloniex.com/tradingApi',
+                data=args,
+                headers={
+                    'Sign': sign.hexdigest(),
+                    'Key': self.__api_key
+                },
+                timeout=self.__timeout)
+
+            return _loads(ret.text, parse_float=str)['BTC']
+
+        except Exception as ex:
+            print(ex)
+            return None
+             
 ###########################################
     def  get_remain_money(self,currency):
         if CURRENCIES.BitCoin == currency:
-            return 100
+            self.get_btc_balance() - self.__balance_information_container.btc_reserved
         
     def get_owners_fee(self,currency):
         if CURRENCIES.BitCoin == currency:
-            return 0.05
+            return self.__aux_info_container.owners_fee
 
     def inform_me(self,currency):
         

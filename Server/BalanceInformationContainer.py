@@ -12,6 +12,7 @@ class BalanceInformationContainer:
     def btc_balance(self,new_btc_balance):
         if (new_btc_balance and isinstance(new_btc_balance,(int,float))):
             self.__btc_balance = new_btc_balance
+            print("BTC balance ->",new_btc_balance)
 
     @property
     def btc_reserved(self):
@@ -21,4 +22,4 @@ class BalanceInformationContainer:
     def btc_reserved(self, new_btc_reserved):
         if (new_btc_reserved and isinstance(new_btc_reserved, (int, float))):
             self.__btc_reserved = new_btc_reserved
-
+            print("BTC reserved->",new_btc_reserved)

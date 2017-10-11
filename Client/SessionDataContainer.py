@@ -30,7 +30,7 @@ class SessionDataContainer(SessionDataPublisher):
         if isinstance(new_recieved_money, (int, float) ):
             self.__recieved_money = new_recieved_money
             self.recieved_money_updated()
-            print("new_recieved_money_on_server", new_recieved_money)
+            print("new_recieved_money", new_recieved_money)
 
     @property
     def reciever_address(self):

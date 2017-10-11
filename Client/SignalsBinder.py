@@ -8,6 +8,7 @@ class SignalsBinder(QObject):
         self.__client_bankomat = client_bankomat
         self.__session_data_configurator = session_data_configurator
         
+        
 ###########################################################################
         
         self.__view_operator = view_operator
@@ -18,7 +19,7 @@ class SignalsBinder(QObject):
         
         self.snapping_client_bankomat_signals()
         self.snapping_signals_interrupt_convertor()
-        
+        self.snapping_session_data_configurator_signals()
         self.snapping_view_operator_signals()
         self.snapping_bill_acceptor_signals()
 
@@ -41,3 +42,7 @@ class SignalsBinder(QObject):
     def snapping_bill_acceptor_signals(self):
         if self.__bill_acceptor is not None:
             self.__bill_acceptor.banknote_recieved.connect(self.__interrupt_convertor.make_keep_amount_btc_money_to_reserve_request)
+        
+    def snapping_session_data_configurator_signals(self):
+        self.__session_data_configurator.monet_revieved_from_bill_acceptor.connect(
+            self.__interrupt_convertor.make_keep_amount_btc_money_to_reserve_request)

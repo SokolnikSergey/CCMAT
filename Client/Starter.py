@@ -33,8 +33,6 @@ class Starter:
 		self.__session_data_container  = SessionDataContainer()
 		self.__session_data_configurator = SessionDataConfigurator(self.__session_data_container,self.__currency_container)
 		
-		
-		
 		self.__signals_binder = SignalsBinder(self.__client_bankomat,self.__interrupt_convertor,self.__session_data_configurator)
 		
 		
@@ -43,9 +41,10 @@ class Starter:
 		
 		s = Subs(self.__currency_container)
 		self.__finanсial_updator.start()
-		#self.__interrupt_convertor.make_inform_me_btc_request()
+		self.__interrupt_convertor.make_inform_me_btc_request()
+		#self.__session_data_configurator.recieved_money_bill_acceptor(20)
 		#self.__interrupt_convertor.make_keep_amount_btc_money_to_reserve_request(20)
-		self.__interrupt_convertor.make_withdraw_btc_request(0.0,'a[sld[as[da[sd[asd')
+		#self.__interrupt_convertor.make_withdraw_btc_request(0.0,'a[sld[as[da[sd[asd')
 		
 	
 app = QApplication([])

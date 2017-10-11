@@ -14,6 +14,9 @@ class FinancialUpdator(Thread):
 
         self.do  = True
 
+
+
+
     def run(self):
         while(self.do):
 

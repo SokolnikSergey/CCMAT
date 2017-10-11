@@ -15,6 +15,11 @@ class AuxiliaryInformationContainer(AuxiliaryInformationPublisher):
 		if (new_owners_fee and isinstance(new_owners_fee,(int,float))):
 			self.__owners_fee = new_owners_fee
 	
+		if (new_owners_fee and isinstance(new_owners_fee,str)):
+			try:
+				self.__owners_fee = float(new_owners_fee)
+			except Exception as ex:
+				pass
 	
 	def update_owners_fee(self):
 		for subs in self.__subscribers:

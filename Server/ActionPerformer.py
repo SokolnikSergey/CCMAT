@@ -19,7 +19,7 @@ class ActionPerformer(QObject):
             action_type = action.operation_type
             data  =  action.operation_data
             sender = action.socket_sender
-            print(action_type)
+        
             if action_type ==  ACTIONS.InformMe:
                 response = self.__operations_executor.inform_me(data["currency"])
                 self.__balance_inforation_configurator.set_btc_balance(response["data"]['remain_money'])
