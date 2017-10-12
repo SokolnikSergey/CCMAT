@@ -10,6 +10,10 @@ class SessionDataConfigurator(QObject):
         self.__session_data_container = session_data_container
         self.__currency_container = currency_container
 
+    def reciecer_address_decoded(self,address):
+        if (isinstance(address,str)):
+            self.__session_data_container.reciever_address = address
+
     def recieved_money_bill_acceptor(self,amout):
         print("Recieve money", amout)
         if amout and  isinstance(amout,(int,float)) and amout > 0:

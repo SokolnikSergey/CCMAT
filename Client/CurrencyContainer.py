@@ -8,7 +8,8 @@ class CurrencyContainer(CurrencyPublisher):
         self.__owners_fee = owners_fee
 
         self.__subscribers = []
-
+    
+    
     @property
     def uah_btc(self):
         return self.__uah_btc
@@ -52,12 +53,14 @@ class CurrencyContainer(CurrencyPublisher):
             self.owners_fee_updated()
           
     def update_all(self):
+        print(self.__subscribers)
         if self.__subscribers:
             for subscriber in self.__subscribers:
                 subscriber.updated_uah_btc(self.__uah_btc)
                 subscriber.updated_uah_dollar(self.__uah_dollar)
                 subscriber.transactions_fee_update(self.__transactions_fee)
                 subscriber.owners_fee_update(self.__owners_fee)
+        
 
     def subscribe(self,subscriber):
         if subscriber not in self.__subscribers:

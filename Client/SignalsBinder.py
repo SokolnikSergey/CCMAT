@@ -1,13 +1,15 @@
 from PyQt5.QtCore import QObject
 
 class SignalsBinder(QObject):
-    def __init__(self,client_bankomat,interrupt_convertor,session_data_configurator,view_operator = None,bill_acceptor = None):
+    def __init__(self,client_bankomat,interrupt_convertor,session_data_configurator,view_operator = None,
+                 bill_acceptor = None,qr_decoder = None):
         super(SignalsBinder, self).__init__()
 
         self.__interrupt_convertor = interrupt_convertor
         self.__client_bankomat = client_bankomat
         self.__session_data_configurator = session_data_configurator
         
+        self.__qr_decoder = qr_decoder
         
 ###########################################################################
         
@@ -22,6 +24,10 @@ class SignalsBinder(QObject):
         self.snapping_session_data_configurator_signals()
         self.snapping_view_operator_signals()
         self.snapping_bill_acceptor_signals()
+        self.snapping_qr_decoder_signals()
+        
+        
+        
 
     def snapping_client_bankomat_signals(self):
         self.__client_bankomat.data_from_server_recieved.connect(self.__interrupt_convertor.detect_action)
@@ -46,3 +52,7 @@ class SignalsBinder(QObject):
     def snapping_session_data_configurator_signals(self):
         self.__session_data_configurator.monet_revieved_from_bill_acceptor.connect(
             self.__interrupt_convertor.make_keep_amount_btc_money_to_reserve_request)
+        
+        
+    def snapping_qr_decoder_signals(self):
+        self.__qr_decoder.qr_detected.connect(self.__session_data_configurator.reciecer_address_decoded)
