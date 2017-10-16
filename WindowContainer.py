@@ -43,7 +43,6 @@ class WindowContainer(QWidget):
         self.setLayout(self.__vlay_main)
 
     def set_contain_window(self, window):
-        print(window)
         if(self.__contain_window_ptr != None):
 
             self.__vlay_main.removeWidget(self.__contain_window_ptr)

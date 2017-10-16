@@ -13,6 +13,8 @@ from Client.Subs import Subs
 from Client.QrController import QRController
 from Client.CurrencyContainerConfigurator import CurrencyContainerConfigurator
 from WindowContainer import WindowContainer
+from Client.AuxiliaryInformationContainer import AuxiliaryInformationContainer
+from Client.InformationFiller import InformationFiller
 
 from Client.MainViewController import MainViewController
 from MainWindow import MainWindow
@@ -35,6 +37,12 @@ class Starter:
 	
 	
 	def create_aux_objects(self):
+		
+		self.__aux_info_container  = AuxiliaryInformationContainer()
+		self.__aux_info_filler = InformationFiller(self.__aux_info_container)
+		self.__aux_info_filler.fill_container_by_file_data()
+			
+		
 		self.__client_bankomat = ClientBankomat()
 		self.__currency_container = CurrencyContainer()
 		self.__currency_container_configurator = CurrencyContainerConfigurator(self.__currency_container)

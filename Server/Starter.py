@@ -8,6 +8,8 @@ from Server.ActionPerformer import ActionPerformer
 from Server.OperationExecutor import OperationExecutor
 from Server.SignalsBinder import SignalsBinder
 from Server.ServerMain import Server
+from Server.DataBaseConnector import DataBaseConnector
+from Server.DataBaseTransactor import DataBaseTransactor
 from Server.InformationFiller import InformationFiller
 from PyQt5.QtWidgets import QApplication
 
@@ -41,8 +43,11 @@ class Starter:
 		self.__action_performer = ActionPerformer(self.__action_queue,self.__operation_executor,
 		                                          self.__balance_information_configurator)
 		
+		self.__db_connector = DataBaseConnector(database="Bankomat")
+		self.__db_transactor = DataBaseTransactor(self.__db_connector)
+		
 		self.__signals_binder =  SignalsBinder(self.__server,self.__interrupt_convertor,
-		                            self.__balance_information_configurator,self.__action_queue,self.__action_performer)
+		        self.__balance_information_configurator,self.__action_queue,self.__action_performer,self.__db_transactor)
 	
 	
 		

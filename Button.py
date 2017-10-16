@@ -23,7 +23,7 @@ class ImageButton(QLabel):
         self.setText("<img src=\""+self.__image_path+"\"><br>"+text+"<br>"+self.__currency)
 
     def setCurrency(self, new_currency):
-        print("setCurrency ", type(new_currency))
+ 
         self.__currency = new_currency
         self.setCryptName(self.__crypt_name)
 
