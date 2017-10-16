@@ -4,12 +4,13 @@ from ENUMS.ACTIONS import ACTIONS
 class ActionPerformer(QObject):
 
     action_done = pyqtSignal(object,dict,list,object)
-
-    def __init__(self,action_queue = None,operations_executor = None,balance_info_configurator = None):
+    add_recoed_to_db = pyqtSignal(str,str,str,str,str,float,float) # wallet owner,wallet reciever ,imei bankomat,location,crypto_type,amount_crypto,amount_real
+    def __init__(self,action_queue = None,operations_executor = None,balance_info_configurator = None,info_container = None):
         super(ActionPerformer, self).__init__()
         self.__action_queue = action_queue
         self.__operations_executor = operations_executor
         self.__balance_inforation_configurator = balance_info_configurator
+        self.__aux_info_container = info_container
 
 
     def start_executing(self):
@@ -48,12 +49,22 @@ class ActionPerformer(QObject):
                     
                     self.__balance_inforation_configurator.take_into_account_btc_outflow(data["currency"],data["amount"])
                     
+                    reciever_address = data["reciever"]
+                    imei = data["imei"]
+                    location = data["location"]
+                    currency = data["currency"]
+                    crypto_amount  = data["amount"]
+                    amount_real = data["amount_real"]
+                    
                     response_errors = []
-                    response = {"currency": data["currency"],
-                                "amount": data["amount"],
-                                "reciever" : data["reciever"]}
+                    response = {"currency": currency,
+                                "amount": crypto_amount,
+                                "reciever" : reciever_address}
                     
                     self.action_done.emit(sender, response, response_errors, action_type)
+                    self.add_recoed_to_db(self.__aux_info_container.wallet_address,reciever_address,imei,location,
+                                          currency,crypto_amount,amount_real)
+                                          
                      
                                 
                 

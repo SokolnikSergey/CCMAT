@@ -23,6 +23,7 @@ class SignalsBinder:
         
     def snapping_action_performer_signals(self):
         self.__action_performer.action_done.connect(self.__interrupt_convertor.make_response)
+        self.__action_performer.add_recoed_to_db.connect(self.___db_transactor.result_of_withdraw)
         ### connect signals about perform of transactions with database transactor
     
     def snapping_interrupt_convertor_signals(self):

@@ -27,11 +27,12 @@ class InformationFiller:
 		self.__config_parser.add_section("Settings")
 		
 		self.__config_parser.set("Settings", "Owners_fee", "0.02")
+		self.__config_parser.set("Settings","wallet_address","-1")
 		
 		self.__config_parser.add_section("AccountData")
 		
-		self.__config_parser.set( "AccountData", "API_KEY", "")
-		self.__config_parser.set("AccountData", "SECRET_KEY", "")
+		self.__config_parser.set( "AccountData", "API_KEY", "-1")
+		self.__config_parser.set("AccountData", "SECRET_KEY", "-1")
 		
 		
 		self.write_to_config_file()
@@ -72,7 +73,18 @@ class InformationFiller:
 					self.___aux_information_container.secret_key = secret_key
 		return secret_key
 
+	def read_wallet_address_from_ini(self):
+		wallet_address = None
+		if self.__config_parser is not None:
+			if "Settings" in self.__config_parser:
+				wallet_address = self.__config_parser["Settings"]["wallet_address"]
+				if (wallet_address is not None) and self.___aux_information_container:
+					print(wallet_address)
+					self.___aux_information_container.wallet_address = wallet_address
+		return wallet_address
+
 	def fill_container_by_file_data(self):
 		self.read_owners_fee_from_ini()
 		self.read_api_key_from_ini()
 		self.read_secter_key_from_ini()
+		self.read_wallet_address_from_ini()

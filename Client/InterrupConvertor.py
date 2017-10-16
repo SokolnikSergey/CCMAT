@@ -10,9 +10,11 @@ class InterruptConvertor(QObject):
 	withdraw_complete = pyqtSignal(dict)
 	request_has_made = pyqtSignal(str)
 
-	def __init__(self):
+	def __init__(self,info_container  = None,currency_container = None):
 		super(InterruptConvertor,self).__init__()
-
+		self.__aux_info_container = info_container
+		self.__currency_container = currency_container
+		
 	def translate_data_from_server(self,data):
 		return json.loads(data)
 
@@ -55,11 +57,15 @@ class InterruptConvertor(QObject):
 
 
 	def make_withdraw_btc_request(self, amount,reciever_address):  ##This money sets with all fees
+		amount_real = (self.__currency_container.transactions_fee + self.__currency_container.owners_fee) * amount + amount
 		request = {
 			"type": 3,
 			"data": {"currency": "BTC",
 			         "reciever": reciever_address,
-			         'amount':amount}
+			         'amount':amount,
+			         'imei':self.__aux_info_container.imei,
+			         'location':self.__aux_info_container.location}
+					 'amount_real': amount_real
 		}
 		self.request_has_made.emit(self.translate_data_to_server(request))
 

@@ -49,7 +49,7 @@ class Starter:
 		
 		self.__finanсial_updator = FinancialUpdator(self.__public_polo,15,self.__currency_container_configurator)
 		
-		self.__interrupt_convertor = InterruptConvertor()
+		self.__interrupt_convertor = InterruptConvertor(self.__aux_info_container)
 		
 		self.__session_data_container  = SessionDataContainer()
 		self.__session_data_configurator = SessionDataConfigurator(self.__session_data_container,self.__currency_container)

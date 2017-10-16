@@ -1,11 +1,12 @@
 from Interfaces.AuxiliaryInformationPublisher import AuxiliaryInformationPublisher
 
 class AuxiliaryInformationContainer(AuxiliaryInformationPublisher):
-	def __init__(self,owners_fee = -1,api_key = None,secret_key=None):
+	def __init__(self,owners_fee = -1,api_key = None,secret_key=None, wallet_address =None):
 		self.__owners_fee = owners_fee
 		
 		self.__api_key = api_key,
 		self.__secret_key = secret_key
+		self.__wallet_address  = wallet_address 
 		
 		self.__subscribers =[]
 		
@@ -40,10 +41,20 @@ class AuxiliaryInformationContainer(AuxiliaryInformationPublisher):
 	def secret_key(self, new_secret_key):
 		self.__secret_key = new_secret_key
 	
-	def update_owners_fee(self):
-		for subs in self.__subscribers:
-			subs.updated_owners_fee(self.__owners_fee)
+	@property
+	def wallet_address(self):
+		return self.__wallet_address
 	
+	@wallet_address.setter
+	def wallet_address(self, new_wallet_address):
+		print("wallet address",new_wallet_address)
+		self.__wallet_address = new_wallet_address
+
+	
+	def update_owners_fee(self):
+			for subs in self.__subscribers:
+				subs.updated_owners_fee(self.__owners_fee)
+		
 	def subscribe(self, subscriber):
 		if subscriber not in self.__subscribers:
 			self.__subscribers.append(subscriber)

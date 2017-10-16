@@ -41,7 +41,7 @@ class Starter:
 		                        ,self.__aux_info_container.secret_key,self.__aux_info_container)
 		
 		self.__action_performer = ActionPerformer(self.__action_queue,self.__operation_executor,
-		                                          self.__balance_information_configurator)
+		                                          self.__balance_information_configurator,self.__aux_info_container)
 		
 		self.__db_connector = DataBaseConnector(database="Bankomat")
 		self.__db_transactor = DataBaseTransactor(self.__db_connector)
