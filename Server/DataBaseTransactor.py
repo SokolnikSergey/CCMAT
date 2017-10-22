@@ -25,7 +25,7 @@ class DataBaseTransactor:
             cur.execute(query)
             transaction_id = cur.fetchall()[-1][0]
         except Exception as ex:
-            bankomat_id = 0
+            transaction_id = 0
         
     
         query = "select id_bankomat from bankomats where imei_bankomat='{imei_bankomat}' and location='{location}' ".format(imei_bankomat=imei_bankomat, location=location)
