@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QHBoxLayout, QVBoxLayout, QPushButton
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QFontDatabase
 from PyQt5.Qt import Qt, QTimer, pyqtSignal
 from BillAcceptorUI import BillAcceptorUI
 from QRScannerUI import QRScannerUI
@@ -62,7 +62,11 @@ class BuyCoinsWindow(QWidget):
 
     def configObjects(self):
 
-        self.__label_enter_wallet.setFont(QFont("Segoe UI", 15))
+        id = QFontDatabase.addApplicationFont("fonts/Ubuntu-R.ttf")
+        print("leen", len(QFontDatabase.applicationFontFamilies(id)[0]))
+        ubuntu_font = QFont(QFontDatabase.applicationFontFamilies(id)[0], 15)
+
+        self.__label_enter_wallet.setFont(ubuntu_font)
         self.__label_enter_wallet.setAlignment(Qt.AlignCenter)
         self.__label_enter_wallet.setWordWrap(True)
 
@@ -72,7 +76,7 @@ class BuyCoinsWindow(QWidget):
         self.__button_back.setStyleSheet("QPushButton { color: black; border: none; }"
                                          "QPushButton:pressed { background: black; color: white; }")
         self.__button_back.setMinimumHeight(50)
-        self.__button_back.setFont(QFont("Segoe UI", 15))
+        self.__button_back.setFont(ubuntu_font)
         self.__button_back.clicked.connect(self.on_back_clicked)
 
         self.__button_buy.clicked.connect(self.on_buy_clicked)
@@ -89,12 +93,13 @@ class BuyCoinsWindow(QWidget):
         self.__timer.timeout.connect(self.on_timer_timeout)
 
     def on_qr_decoded(self, wallet):
-        print(wallet)
+
         self.__wallet = self.prepareWalletAddress(wallet)
+        print(self.__wallet)
         self.__session_configurator.reciecer_address_decoded(self.__wallet)
-        self.__wallet = self.prepareWallet(wallet)
-        self.__label_enter_wallet.setText("Ваш колек:\n\n"+self.__wallet)
-        print(self.prepareWallet(wallet))
+        self.__wallet = self.prepareWallet(self.__wallet)
+        self.__label_enter_wallet.setText("Ваш колек:\n\n"+self.__wallet+"\nПосле нажатия кнопки 'далее' вы сможете пополнить баланс, наш криптомат не дает сдачи, проверьте правильность кошелька.\n")
+        print("eeerr")
         self.__widget_qr_scanner.hide()
         self.__session_configurator.monet_revieved_from_bill_acceptor.connect(self.on_money_keeped)
         self.show_buy_button()
@@ -120,7 +125,8 @@ class BuyCoinsWindow(QWidget):
             self.__button_buy.show()
             self.calculate_crypto_coins()
         elif(self.__widget_qr_scanner.isHidden() and self.__widget_bill_acceptor.bills == 0):
-            self.__label_enter_wallet.setText("Ваш кошелек:\n\n"+self.__wallet)
+            print("You wallet after preparing",self.__wallet)
+            self.__label_enter_wallet.setText("Ваш кошелек:\n\n"+self.__wallet+"\nПосле нажатия кнопки 'далее' вы сможете пополнить баланс,\n наш криптомат не дает сдачи, проверьте правильность кошелька.\n")
 
     def calculate_crypto_coins(self):
         self.__session_configurator.recieved_money_bill_acceptor(self.__widget_bill_acceptor.bills)
@@ -151,7 +157,13 @@ class BuyCoinsWindow(QWidget):
         return new_wallet
 
     def prepareWalletAddress(self, wallet):
-        if(wallet.endswith("\n")):
-            return wallet[:-1]
-        else:
-            return wallet
+        print(12312312321)
+        if "?" in wallet:
+            pos = wallet.index("?")
+            wallet = wallet[:pos]
+
+        if ":" in wallet:
+            pos = wallet.index(":")
+            wallet = wallet[pos+1:]
+
+        return wallet

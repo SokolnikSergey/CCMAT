@@ -3,8 +3,7 @@ from PyQt5.QtCore import QObject
 
 class SignalsBinder(QObject):
     def __init__(self, client_bankomat, interrupt_convertor, session_data_configurator, client_bill_validator=None,
-                 view_operator=None,
-                 qr_decoder=None):
+                 view_operator=None,qr_decoder=None,printer = None):
         super(SignalsBinder, self).__init__()
 
         self.__interrupt_convertor = interrupt_convertor
@@ -15,12 +14,13 @@ class SignalsBinder(QObject):
         ###########################################################################
         self.__bill_acceptor = client_bill_validator
         self.__view_operator = view_operator
+        self.__printer = printer
 
         self.snapping_client_bankomat_signals()
         self.snapping_signals_interrupt_convertor()
         self.snapping_session_data_configurator_signals()
         self.snapping_view_operator_signals()
-        self.snapping_bill_acceptor_signals()
+       # self.snapping_bill_acceptor_signals()
         self.snapping_qr_decoder_signals()
 
     def snapping_client_bankomat_signals(self):
@@ -31,6 +31,7 @@ class SignalsBinder(QObject):
         self.__interrupt_convertor.actual_data.connect(self.__session_data_configurator.amount_kept)
         self.__interrupt_convertor.withdraw_complete.connect(self.__session_data_configurator.withdraw_complete)
 
+        self.__interrupt_convertor.withdraw_complete.connect(self.__printer.print_on_paper)
         self.__interrupt_convertor.request_has_made.connect(self.__client_bankomat.write_data_to_server)
 
     def snapping_view_operator_signals(self):

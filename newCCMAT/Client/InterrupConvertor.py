@@ -37,7 +37,7 @@ class InterruptConvertor(QObject):
 				    self.inform_me.emit(action_data)
 				
 				elif action_type == ACTIONS.KeepAmountActualMoney:
-				    self.actual_data.emit(action_data)
+					self.actual_data.emit(action_data)
 				
 				elif action_type == ACTIONS.Withdraw:
 				    self.withdraw_complete.emit(action_data)
@@ -59,11 +59,8 @@ class InterruptConvertor(QObject):
 
 
 	def make_withdraw_btc_request(self):  ##This money sets with all fees
-		print(1)
-		print(self.__session_data)
 		amount = self.__session_data.recieved_money
-		print(2)
-		amount_real = (self.__currency_container.transactions_fee + self.__currency_container.owners_fee) * amount + amount
+		amount_real = ((self.__currency_container.transactions_fee + self.__currency_container.owners_fee) * amount + amount)  * self.__currency_container.uah_btc
 		request = {
 			"type": 3,
 			"data": {"currency": "BTC",
@@ -73,10 +70,8 @@ class InterruptConvertor(QObject):
 			         'location':self.__aux_info_container.location,
 					 'amount_real': amount_real }
 		}
-		print(request["data"])
-		print(3)
+
 		self.request_has_made.emit(self.translate_data_to_server(request))
-		print(4)
         
 
 

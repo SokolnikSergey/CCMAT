@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QFontDatabase
 from PyQt5.Qt import Qt, pyqtSignal
 
 
@@ -28,6 +28,10 @@ class BillAcceptorUI(QWidget):
 
     def configObjects(self):
 
+        id = QFontDatabase.addApplicationFont("fonts/Ubuntu-R.ttf")
+        print("leen", len(QFontDatabase.applicationFontFamilies(id)[0]))
+        ubuntu_font = QFont(QFontDatabase.applicationFontFamilies(id)[0], 15)
+
         self.setLayout(self.__vlay_main)
 
         self.__vlay_main.setSpacing(0)
@@ -37,7 +41,7 @@ class BillAcceptorUI(QWidget):
         self.__vlay_main.addWidget(self.__button_add100)
         self.__vlay_main.setContentsMargins(0, 0, 0, 0)
 
-        self.__label_enter_money.setFont(QFont("Segoe UI", 15))
+        self.__label_enter_money.setFont(ubuntu_font)
         self.__label_enter_money.setAlignment(Qt.AlignCenter)
 
         self.setStyleSheet("background: rgb(66, 101, 244); color: white;")

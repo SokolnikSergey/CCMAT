@@ -5,8 +5,11 @@ class SessionDataConfigurator(QObject):
     monet_revieved_from_bill_acceptor = pyqtSignal(float)
 	
     def __init__(self,session_data_container = None,currency_container = None):
-        
+
+
+
         super(SessionDataConfigurator, self).__init__()
+
         self.__session_data_container = session_data_container
         self.__currency_container = currency_container
 
@@ -40,15 +43,19 @@ class SessionDataConfigurator(QObject):
 
 
     def amount_kept(self,data):
+        print("Amount kept signal",data)
         self.__session_data_container.remaining_money_on_server = data.get("amount_remained", -1)
         self.__session_data_container.recieved_money +=  data.get("amount_reserved", -1)
 	
    
     def withdraw_complete(self,data):
-        print("Withdraw complete")
+        print("Withdraw complete at session data configurator")
         currency = data["currency"]
         amount = data["amount"]
         reciever_address = data["reciever"]
+        date_time  = data["date_time"]
+        cryptomat_location = data['cryptomat_location']
+        support = data["support"]
         #### print the reciept by this data
         self.__session_data_container.recieved_money = 0
 	

@@ -1,5 +1,6 @@
 from PyQt5.QtCore import  QObject,pyqtSignal
 from ENUMS.ACTIONS import ACTIONS
+from datetime import datetime
 
 class ActionPerformer(QObject):
 
@@ -56,16 +57,25 @@ class ActionPerformer(QObject):
                     currency = data["currency"]
                     crypto_amount  = data["amount"]
                     amount_real = data["amount_real"]
-                    
+
+
                     response_errors = []
                     response = {"currency": currency,
                                 "amount": crypto_amount,
-                                "reciever" : reciever_address}
+                                "reciever" : reciever_address,
+                                "date_time": datetime.now(),
+                                "cryptomat_location":location,
+                                "support": self.__aux_info_container.support_number
+                                }
                     
                     self.action_done.emit(sender, response, response_errors, action_type)
-                    print(self.__aux_info_container.wallet_address,reciever_address,imei,location,
-                                          currency,crypto_amount,amount_real)
+                    print("Data which emited for check and added to database ! -> ")
+                    print("owner wallet: {} reciever wallet {} imei {} location {} currency {} crypto amount {} amount real {}".format(                          self.__aux_info_container.wallet_address,reciever_address,imei,location,
+                                          currency.value,crypto_amount,amount_real))
+
+
                     self.add_recoed_to_db.emit(self.__aux_info_container.wallet_address,reciever_address,imei,location,
-                                          currency.value,crypto_amount,amount_real)
+                                          currency.value,amount_real,crypto_amount)
+                    #("ownerwallet3", "recieverwallet3", "imeibankomat3", "bankomatlocation3", "BTC", 3.00, 0.0015)
 
                 

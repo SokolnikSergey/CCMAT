@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QGraphicsDropShadowEffect
 from PyQt5.QtGui import QFont, QIcon
-from PyQt5.Qt import Qt, QSize, QTimer, QDateTime, QDate, QTime, pyqtSignal
+from PyQt5.Qt import Qt, QSize, QTimer, QDateTime, QDate, QTime, pyqtSignal, QFontDatabase
 from BuyCoinsWindow import BuyCoinsWindow
 from Button import ImageButton
 from InfoUI import InfoUI
@@ -49,12 +49,14 @@ class MainWindow(QWidget):
         self.__vlay_root.addLayout(self.__vlay_main)
 
         self.__vlay_main.setAlignment(Qt.AlignCenter)
+        self.__vlay_main.setSpacing(0)
         self.__vlay_main.addWidget(self.__label_logo)
-        self.__vlay_main.addSpacing(50)
+        self.__vlay_main.addStretch(0)
         self.__vlay_main.addWidget(self.__label_select_currency)
         self.__vlay_main.addLayout(self.__hlay_buttons_buy_coins)
+        self.__vlay_main.addStretch(0)
         self.__vlay_main.addSpacing(10)
-        self.__vlay_main.addWidget(self.__button_others_currency)
+        #self.__vlay_main.addWidget(self.__button_others_currency)
         self.__vlay_main.addWidget(self.__button_info)
         self.__vlay_main.setContentsMargins(0, 0, 0, 70)
 
@@ -63,6 +65,11 @@ class MainWindow(QWidget):
         self.setLayout(self.__vlay_root)
 
     def config_widgets(self):
+
+        id = QFontDatabase.addApplicationFont("fonts/Ubuntu-R.ttf")
+        print("leen",len(QFontDatabase.applicationFontFamilies(id)[0]))
+        ubuntu_font = QFont(QFontDatabase.applicationFontFamilies(id)[0], 22)
+
         self.button_bitcoin.setCurrency("")
         self.button_bitcoin.setFixedSize(250, 250)
         self.__button_others_currency.setStyleSheet("QPushButton { background: rgb(66, 101, 244); color: white; border-radius: 5px; }"
@@ -74,7 +81,7 @@ class MainWindow(QWidget):
                                          "QPushButton:pressed { background: black; color: white }")
 
         self.__button_info.setMinimumHeight(50)
-        self.__button_info.setFont(QFont("Segoe UI", 15))
+        self.__button_info.setFont(ubuntu_font)
         self.button_bitcoin.setFont(self.__button_info.font())
         self.__button_others_currency.setMinimumHeight(self.__button_info.minimumHeight())
         self.__button_others_currency.setFont(self.__button_info.font())
@@ -93,7 +100,7 @@ class MainWindow(QWidget):
         self.__timer.start(1000)
 
         self.__label_time_date.setAlignment(Qt.AlignLeft)
-        self.__label_time_date.setFont(QFont("Segoe UI", 15))
+        self.__label_time_date.setFont(ubuntu_font)
 
         self.__button_info.clicked.connect(self.on_button_help)
 

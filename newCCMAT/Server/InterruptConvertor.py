@@ -27,7 +27,6 @@ class InterruptConvertor(QObject):
         return value.value
 
     def make_action(self,sock_sender,request_dict):
-        print(request_dict)
         request_dict =  json.loads(request_dict)
         
         action_type = self.translate_int_action_to_enum_action(request_dict["type"])
@@ -46,5 +45,7 @@ class InterruptConvertor(QObject):
             response = {"type":action_type,
                         "data":data,
                         "response_errors":response_errors}
+
+            print(response)
             self.response_has_made.emit(socket,response)
             

@@ -1,9 +1,7 @@
-import subprocess
-
-import poloniex
-
-from PyQt5.QtWidgets import QApplication
+from multiprocessing import Queue
 import sys
+import poloniex,subprocess
+from PyQt5.QtWidgets import QApplication
 from Client.ClientBankomat import ClientBankomat
 from Client.CurrencyContainer import CurrencyContainer
 from Client.FinancialUpdator import FinancialUpdator
@@ -16,7 +14,7 @@ from Client.QrController import QRController
 from Client.CurrencyContainerConfigurator import CurrencyContainerConfigurator
 from Client.AuxiliaryInformationContainer import AuxiliaryInformationContainer
 from Client.InformationFiller import InformationFiller
-
+from Client.TermoPrinter import TermoPrinter
 from Client.ClientBillAcceptor import BillServer
 
 from Client.MainViewController import MainViewController
@@ -33,6 +31,8 @@ class Starter:
         self.__public_polo = poloniex.PoloniexPublic()
 
     def create_aux_objects(self):
+
+        self.__printer = TermoPrinter()
         self.__aux_info_container = AuxiliaryInformationContainer()
         self.__aux_info_filler = InformationFiller(self.__aux_info_container)
         self.__aux_info_filler.fill_container_by_file_data()
@@ -60,12 +60,14 @@ class Starter:
                                               self.__session_data_configurator,
                                               client_bill_validator=self.__client_bill_validator,
                                               view_operator=self.__main_window_controller,
-                                              qr_decoder=self.qr_controller)
-        print(55)
+                                              qr_decoder=self.qr_controller,
+                                              printer= self.__printer)
+
     def start_working(self):
         s = Subs(self.__currency_container)
         self.__finanсial_updator.start()
 
+        subprocess.Popen(r"billvalidator/bill_reciever.exe")
 
 app = QApplication([])
 

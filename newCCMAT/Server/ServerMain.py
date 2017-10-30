@@ -23,6 +23,7 @@ class Server(QObject):
         self.__socket.newConnection.connect(self.add_new_connection)
 
     def add_new_connection(self):
+        print("new connection")
         sock = self.__socket.nextPendingConnection()
         sock.readyRead.connect(self.read_data_from_socket)
 
@@ -32,7 +33,7 @@ class Server(QObject):
     def read_data_from_socket(self):
         sender = self.sender()
         data = sender.readAll().data().decode("utf-8")
-
+        print("read_data",data)
         self.data_recieved.emit(sender, data)
 
     def write_data_to_socket(self, response_reciever, dict_data):
