@@ -3,6 +3,8 @@ from PyQt5.QtGui import QFont, QFontDatabase
 from PyQt5.Qt import Qt, QTimer, pyqtSignal
 from BillAcceptorUI import BillAcceptorUI
 from QRScannerUI import QRScannerUI
+import TEXT_CONSTANTS
+from WarningUI import WarningUI
 
 class BuyCoinsWindow(QWidget):
 
@@ -36,12 +38,15 @@ class BuyCoinsWindow(QWidget):
         self.__widget_bill_acceptor = BillAcceptorUI(self.__bills_server)
         self.__widget_qr_scanner = QRScannerUI()
 
-        self.__label_enter_wallet = QLabel("СКАНИРОВАНИЕ QR-КОДА..<br>ПОДНЕСИТЕ QR К КАМЕРЕ..")
+        self.__label_enter_wallet = QLabel(TEXT_CONSTANTS.BUY_COINS_WINDOW_QR_SCANNING)
+        self.__label_logo = QLabel("<img src=\"images/logo.png\">")
 
-        self.__button_buy = QPushButton("КУПИТЬ")
-        self.__button_back = QPushButton("< Назад")
+        self.__button_buy = QPushButton(TEXT_CONSTANTS.BUY_COINS_WINDOW_NEXT_BUTTON)
+        self.__button_back = QPushButton(TEXT_CONSTANTS.BUY_COINS_WINDOW_BACK_BUTTON)
 
         self.__timer = QTimer()
+
+        self.__warning_window = WarningUI()
 
 
     def prepareLayouts(self):
@@ -53,6 +58,7 @@ class BuyCoinsWindow(QWidget):
         self.__hlay_main.setContentsMargins(0, 0, 0, 0)
         print(444)
         self.__vlay_left.addWidget(self.__button_back)
+        self.__vlay_left.addWidget(self.__label_logo)
         self.__vlay_left.addWidget(self.__label_enter_wallet)
         self.__vlay_left.addWidget(self.__widget_qr_scanner)
         self.__vlay_left.addWidget(self.__button_buy)
@@ -89,8 +95,16 @@ class BuyCoinsWindow(QWidget):
         self.__widget_qr_scanner.qr_decoded.connect(self.on_qr_decoded)
         self.__widget_bill_acceptor.bill_accepted.connect(self.on_bill_accepted)
         self.__label_enter_wallet.setWordWrap(True)
+        self.__label_logo.setAlignment(Qt.AlignCenter)
 
         self.__timer.timeout.connect(self.on_timer_timeout)
+
+        self.__widget_bill_acceptor.hide()
+        self.__warning_window.on_timeout.connect(self.on_timeout_warning)
+        self.__warning_window.setLogo("<img src=\"images/logo.png\">")
+        self.__warning_window.setText("BlaBlaBla")
+        self.__warning_window.on_ok.connect(self.on_ok_warning)
+        self.__warning_window.on_cancel.connect(self.on_cancel_warning)
 
     def on_qr_decoded(self, wallet):
 
@@ -98,35 +112,49 @@ class BuyCoinsWindow(QWidget):
         print(self.__wallet)
         self.__session_configurator.reciecer_address_decoded(self.__wallet)
         self.__wallet = self.prepareWallet(self.__wallet)
-        self.__label_enter_wallet.setText("Ваш колек:\n\n"+self.__wallet+"\nПосле нажатия кнопки 'далее' вы сможете пополнить баланс, наш криптомат не дает сдачи, проверьте правильность кошелька.\n")
+        self.__label_enter_wallet.setText("Ваш колек:\n\n"+self.__wallet+TEXT_CONSTANTS.BUY_COINS_WINDOW_TIP1)
         print("eeerr")
         self.__widget_qr_scanner.hide()
         self.__session_configurator.monet_revieved_from_bill_acceptor.connect(self.on_money_keeped)
-        self.show_buy_button()
+        self.__button_buy.show()
 
     def on_back_clicked(self):
-        self.__widget_qr_scanner.stopCamera()
-        self.deleteLater()
+        if(self.__widget_bill_acceptor.bills > 0):
+            self.__warning_window.setText(TEXT_CONSTANTS.WARNING_WINDOW_TEXT2)
+            self.__warning_window.showFullScreen()
+        else:
+            self.__widget_qr_scanner.stopCamera()
+            self.deleteLater()
+
 
     def on_buy_clicked(self):
-        self.__label_enter_wallet.setText("Транзакция выполнена успешно!")
-        self.__timer.start(1000)
-        self.__button_buy.hide()
-        self.__widget_bill_acceptor.printTicket()
-        self.buy_clicked.emit()
+        if(self.__button_buy.text() == TEXT_CONSTANTS.BUY_COINS_WINDOW_BUY_BUTTON):
+            self.__label_enter_wallet.setText(TEXT_CONSTANTS.BUY_COINS_WINDOW_TRANSACTION_SUCCESS)
+            self.__timer.start(1000)
+            self.__button_buy.hide()
+            self.__widget_bill_acceptor.printTicket()
+            self.buy_clicked.emit()
+            self.__widget_bill_acceptor.bills = 0
+            self.__warning_window.stopTimer()
+        elif(self.__button_buy.text() == TEXT_CONSTANTS.BUY_COINS_WINDOW_NEXT_BUTTON):
+            self.__widget_bill_acceptor.show()
+            self.__button_buy.hide()
+            self.__button_buy.setText(TEXT_CONSTANTS.BUY_COINS_WINDOW_BUY_BUTTON)
+            self.__label_enter_wallet.setText("Ваш кошелек:\n\n"+self.__wallet)
 
     def on_bill_accepted(self, bills):
         print("12312qq")
+        self.__warning_window.startTimer(60000)
         self.bill_accepted.emit(bills)
         self.show_buy_button()
 
     def show_buy_button(self):
         if(self.__widget_qr_scanner.isHidden() and self.__widget_bill_acceptor.bills > 0):
             self.__button_buy.show()
+            print("111111")
             self.calculate_crypto_coins()
         elif(self.__widget_qr_scanner.isHidden() and self.__widget_bill_acceptor.bills == 0):
-            print("You wallet after preparing",self.__wallet)
-            self.__label_enter_wallet.setText("Ваш кошелек:\n\n"+self.__wallet+"\nПосле нажатия кнопки 'далее' вы сможете пополнить баланс,\n наш криптомат не дает сдачи, проверьте правильность кошелька.\n")
+            self.__label_enter_wallet.setText("Ваш кошелек:\n\n"+self.__wallet)
 
     def calculate_crypto_coins(self):
         self.__session_configurator.recieved_money_bill_acceptor(self.__widget_bill_acceptor.bills)
@@ -135,7 +163,7 @@ class BuyCoinsWindow(QWidget):
         self.__button_back.setFixedWidth(140)
         if(self.__timeout > 1):
             self.__timeout -= 1
-            self.__button_back.setText("< Назад ("+str(self.__timeout)+")")
+            self.__button_back.setText(TEXT_CONSTANTS.BUY_COINS_WINDOW_BACK_BUTTON+" ("+str(self.__timeout)+")")
         else:
             self.deleteLater()
 
@@ -167,3 +195,23 @@ class BuyCoinsWindow(QWidget):
             wallet = wallet[pos+1:]
 
         return wallet
+
+    def on_timeout_warning(self):
+        self.__warning_window.showFullScreen()
+
+    def on_ok_warning(self):
+        if(self.__warning_window.getText() == TEXT_CONSTANTS.WARNING_WINDOW_TEXT1):
+            self.__warning_window.hide()
+            self.__warning_window.startTimer(60000)
+        elif(self.__warning_window.getText() == TEXT_CONSTANTS.WARNING_WINDOW_TEXT2):
+            self.__widget_qr_scanner.stopCamera()
+            self.deleteLater()
+            self.__warning_window.deleteLater()
+
+    def on_cancel_warning(self):
+        if(self.__warning_window.getText() == TEXT_CONSTANTS.WARNING_WINDOW_TEXT2):
+            self.__warning_window.hide()
+        elif(self.__warning_window.getText() == TEXT_CONSTANTS.WARNING_WINDOW_TEXT1):
+            self.__widget_qr_scanner.stopCamera()
+            self.deleteLater()
+            self.__warning_window.deleteLater()

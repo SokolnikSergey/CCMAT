@@ -60,7 +60,7 @@ class TermoPrinter:
             print(ex)
 
 
-
-t = TermoPrinter()
-t.print_on_paper({"currency": "BTC","amount":0.25,"reciever":1233123123123123,"date_time":datetime.now(),
-                'cryptomat_location':"Pushkina Kolontushkina","support":"8-800-555-35-35"})
+#
+# t = TermoPrinter()
+# t.print_on_paper({"currency": "BTC","amount":0.25,"reciever":1233123123123123,"date_time":datetime.now(),
+#                 'cryptomat_location':"Pushkina Kolontushkina","support":"8-800-555-35-35"})

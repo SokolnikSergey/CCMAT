@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton
 from PyQt5.QtGui import QFont, QFontDatabase
 from PyQt5.Qt import Qt, pyqtSignal
-
+import TEXT_CONSTANTS
 
 class BillAcceptorUI(QWidget):
 
@@ -19,7 +19,7 @@ class BillAcceptorUI(QWidget):
     def createObjects(self):
         self.__vlay_main = QVBoxLayout()
 
-        self.__label_enter_money = QLabel("Вставьте купюру<br><br><img src=\"images/cash.png\">")
+        self.__label_enter_money = QLabel(TEXT_CONSTANTS.BILL_ACCEPTOR_WINDOW_INSERT_BILL+"<br><br><img src=\"images/cash.png\">")
 
         self.__button_add10 = QPushButton("10")
         self.__button_add50 = QPushButton("50")
@@ -59,9 +59,7 @@ class BillAcceptorUI(QWidget):
         self.__button_add50.clicked.connect(self.on_buttons_add)
         self.__button_add100.clicked.connect(self.on_buttons_add)
 
-        self.__button_add10.hide()
-        self.__button_add50.hide()
-        self.__button_add100.hide()
+
 
         self.bills_server.money_received.connect(self.on_bill_accepted)
 
@@ -72,7 +70,7 @@ class BillAcceptorUI(QWidget):
         self.update_info()
 
     def update_info(self):
-        self.__label_enter_money.setText("Внесена сумма:<br><br>"+str(self.bills)+"<br><br><img src=\"images/cash.png\">")
+        self.__label_enter_money.setText(TEXT_CONSTANTS.BILL_ACCEPTOR_WINDOW_AMOUNT_RECIEVED+"<br><br>"+str(self.bills)+"<br><br><img src=\"images/cash.png\">")
 
     def on_buttons_add(self):
         if(self.sender() == self.__button_add10):
@@ -83,4 +81,4 @@ class BillAcceptorUI(QWidget):
             self.on_bill_accepted(100)
 
     def printTicket(self):
-        self.__label_enter_money.setText("Заберите чек!<br><br><img src=\"images/ticket.png\">")
+        self.__label_enter_money.setText(TEXT_CONSTANTS.BILL_ACCEPTOR_WINDOW_TAKE_RECIEPT+"<br><br><img src=\"images/ticket.png\">")

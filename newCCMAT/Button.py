@@ -14,10 +14,6 @@ class ImageButton(QLabel):
 
         self.__default_color = "rgb(66, 101, 244);"
         self.__pressed_color = "black"
-        self.__effect_shadow = QGraphicsDropShadowEffect()
-        self.__effect_shadow.setBlurRadius(10)
-        self.__effect_shadow.setOffset(5)
-        self.setGraphicsEffect(self.__effect_shadow)
 
         self.setAlignment(Qt.AlignCenter)
         self.setFont(QFont("Segoe UI", 20))

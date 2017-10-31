@@ -5,6 +5,7 @@ from BuyCoinsWindow import BuyCoinsWindow
 from Button import ImageButton
 from InfoUI import InfoUI
 from CryptoCurrenciesUI import CryptoCurrenciesUI
+import TEXT_CONSTANTS
 
 class MainWindow(QWidget):
 
@@ -31,14 +32,12 @@ class MainWindow(QWidget):
         self.__hlay_buttons_buy_coins = QHBoxLayout()
 
         self.__label_logo = QLabel("<img src=\"images/logo.png\">")
-        self.__label_select_currency = QLabel("Купить")
+        self.__label_select_currency = QLabel(TEXT_CONSTANTS.MAIN_WINDOW_BUY_LABEL)
         self.__label_time_date = QLabel()
 
         self.button_bitcoin = ImageButton("Bitcoin","images/bitcoin.png")
-        self.__button_info = QPushButton("ПОМОЩЬ")
-        self.__button_others_currency = QPushButton("ВСЕ КРИПТОВАЛЮТЫ")
-
-        self.__effect_shadow1 = QGraphicsDropShadowEffect()
+        self.__button_info = QPushButton(TEXT_CONSTANTS.MAIN_WINDOW_HELP_BUTTON)
+        self.__button_others_currency = QPushButton(TEXT_CONSTANTS.MAIN_WINDOW_ALL_CURRENCIES_BUTTON)
 
         self.__timer = QTimer()
         print(123)
@@ -53,6 +52,7 @@ class MainWindow(QWidget):
         self.__vlay_main.addWidget(self.__label_logo)
         self.__vlay_main.addStretch(0)
         self.__vlay_main.addWidget(self.__label_select_currency)
+        self.__vlay_main.addSpacing(10)
         self.__vlay_main.addLayout(self.__hlay_buttons_buy_coins)
         self.__vlay_main.addStretch(0)
         self.__vlay_main.addSpacing(10)
@@ -92,9 +92,6 @@ class MainWindow(QWidget):
 
         self.button_bitcoin.clicked.connect(self.on_crypt_selected)
 
-        self.__effect_shadow1.setBlurRadius(10)
-        self.__effect_shadow1.setOffset(4)
-        self.__button_others_currency.setGraphicsEffect(self.__effect_shadow1)
 
         self.__timer.timeout.connect(self.on_timer_timeout)
         self.__timer.start(1000)

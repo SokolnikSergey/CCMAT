@@ -20,6 +20,7 @@ from Client.ClientBillAcceptor import BillServer
 from Client.MainViewController import MainViewController
 from MainWindow import MainWindow
 
+from WarningUI import WarningUI
 
 class Starter:
     def __init__(self):
@@ -73,5 +74,6 @@ app = QApplication([])
 
 s = Starter()
 s.main_window_view.showFullScreen()
+
 
 sys.exit(app.exec_())

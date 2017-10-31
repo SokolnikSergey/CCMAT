@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
 from PyQt5.QtMultimedia import QCamera, QCameraInfo, QCameraImageCapture
 from PyQt5.QtMultimediaWidgets import QCameraViewfinder
 from PyQt5.Qt import Qt, QTimer, pyqtSignal
+from PyQt5.QtCore import QFile
 from Client.QrController import QRController
 import os
 
@@ -43,7 +44,7 @@ class QRScannerUI(QWidget):
         if (self.__camera):
             self.__camera.setViewfinder(self.__viewfinder)
             self.__camera.start()
-            self.__timer.start(2000)
+            self.__timer.start(1000)
 
 
     def __getCamera(self):
@@ -56,12 +57,17 @@ class QRScannerUI(QWidget):
         self.__camera.searchAndLock()
         self.__camera_capture.capture("{path}/ZBar/qr1.jpg".format(path=os.getcwd()))
         self.__camera.unlock()
+        self.__timer.stop()
         self.__qr_controller.search_qr_data_token()
+        self.__timer.start(1000)
+
 
     def __scanning_success(self, wallet):
         self.__camera.stop()
-        print("scscsd")
+        self.__timer.stop()
         self.qr_decoded.emit(wallet)
 
     def stopCamera(self):
         self.__camera.stop()
+
+
