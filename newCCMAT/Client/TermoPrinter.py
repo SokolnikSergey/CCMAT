@@ -58,7 +58,7 @@ class TermoPrinter:
             story.append(Paragraph("<para fontSize=25 alignment=center>Support: {}</para>".format(support),normal))
 
             doc.multiBuild(story)
-            win32api.ShellExecute(0, "open", pdf_file_name, None, ".", 0)
+            win32api.ShellExecute(0, "print", pdf_file_name, None, ".", 0)
 
         except Exception as ex:
             print(ex)

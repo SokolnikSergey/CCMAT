@@ -38,7 +38,7 @@ class Starter:
         self.__aux_info_filler = InformationFiller(self.__aux_info_container)
         self.__aux_info_filler.fill_container_by_file_data()
 
-        self.__client_bankomat = ClientBankomat(host='localhost')
+        self.__client_bankomat = ClientBankomat(host=self.__aux_info_container.host_server)
         self.__currency_container = CurrencyContainer()
 
         self.__client_bill_validator = BillServer()
@@ -69,7 +69,7 @@ class Starter:
 
         self.__finanсial_updator.start()
 
-        #subprocess.Popen(r"billvalidator/bill_reciever.exe")
+        subprocess.Popen(r"billvalidator/bill_reciever.exe")
 
 app = QApplication([])
 

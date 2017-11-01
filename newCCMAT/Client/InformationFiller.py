@@ -26,18 +26,19 @@ class InformationFiller:
 	def set_default_values(self):
 		self.__config_parser.add_section("Settings")
 		
-		self.__config_parser.set("Settings", "IMEI", "")
+		self.__config_parser.set("Settings", "IMEI", "123312imei")
 		
-		self.__config_parser.set("Settings", "LOCATION", "")
-		
-		
+		self.__config_parser.set("Settings", "LOCATION", "Odessa")
+
+		self.__config_parser.set("Settings", "host_server", "localhost")
+
 		self.write_to_config_file()
-	
+
 	def write_to_config_file(self):
 		if self.__config_parser is not None:
 			with open(self.__path_to_ini, "w") as config_file:
 				self.__config_parser.write(config_file)
-	
+
 	def read_imei_from_ini(self):
 		imei = None
 		if self.__config_parser is not None:
@@ -46,7 +47,7 @@ class InformationFiller:
 				if (imei is not None) and self.___aux_information_container:
 					self.___aux_information_container.imei = imei
 		return imei
-	
+
 	def read_location_from_ini(self):
 		location = None
 		if self.__config_parser is not None:
@@ -55,8 +56,18 @@ class InformationFiller:
 				if (location is not None) and self.___aux_information_container:
 					self.___aux_information_container.location = location
 		return location
-		
-	
+
+	def read_host_server(self):
+		host_server = None
+		if self.__config_parser is not None:
+			if "Settings" in self.__config_parser:
+				host_server = self.__config_parser["Settings"]["host_server"]
+				print(host_server)
+				if (host_server is not None) and self.___aux_information_container:
+					self.___aux_information_container.host_server = host_server
+		return host_server
+
 	def fill_container_by_file_data(self):
 		self.read_imei_from_ini()
 		self.read_location_from_ini()
+		self.read_host_server()

@@ -1,10 +1,19 @@
 
 class AuxiliaryInformationContainer():
-	def __init__(self,imei = "",location=""):
+	def __init__(self,imei = "",location="",host_server = ""):
 	
 		self.__imei = imei
 		self.__location = location
+		self.__host_server = host_server
 
+	@property
+	def host_server(self):
+		return self.__host_server
+
+	@host_server.setter
+	def host_server(self, new_host_server):
+		if (new_host_server and isinstance(new_host_server, str)):
+			self.__host_server = new_host_server
 		
 	@property
 	def imei(self):

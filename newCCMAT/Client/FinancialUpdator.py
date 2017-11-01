@@ -14,7 +14,6 @@ class FinancialUpdator(QObject,Thread):
 
     def __init__(self,polo= None,timer = 10,container_configurator =None , group=None, target=None, name=None, args=(), kwargs=None, *, daemon=None):
         super(FinancialUpdator, self).__init__()
-        #super().__init__(group, target, name, args, kwargs, daemon=daemon)
         self.__polo = polo
         self.__container_configurator = container_configurator
         self.__timer = timer
