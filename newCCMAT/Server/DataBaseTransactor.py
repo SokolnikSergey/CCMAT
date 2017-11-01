@@ -13,8 +13,7 @@ class DataBaseTransactor:
         print("Transaction started  ")
         amount_real = float("{0:.10f}".format(amount_real))
         amount_crypto = float("{0:.10f}".format(amount_crypto))
-        #data_time = datetime.now()
-        date_time = '2017-11-01 22:12:10'
+        date_time = datetime.now()
         transaction_id = 0
         query = "insert into transactions values (NULL,NULL,{amount_of_real},{amount_of_crypto},'{date_time}','{type_crypto}','{market_name}');" \
             .format(amount_of_crypto=amount_crypto, amount_of_real=amount_real, date_time=date_time,

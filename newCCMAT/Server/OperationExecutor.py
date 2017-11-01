@@ -36,63 +36,63 @@ class OperationExecutor:
 
         print("Withdraw with currency {} reciever_address = {} amount_of_crypto={}".format(currency,reciever_address,amount_of_crypto))
         currency_name = self.get_currency_name(currency)
-        #
-        # args = {"currency": currency_name, "amount": amount_of_crypto, "address": reciever_address,
-        #         'command' : 'withdraw' , 'nonce' : self.get_nonce() }
-        #
-        # try:
-        #     # encode arguments for url
-        #     postData = _urlencode(args)
-        #     # sign postData with our Secret
-        #     sign = _new(
-        #         self.__secret_key.encode('utf-8'),
-        #         postData.encode('utf-8'),
-        #         _sha512)
-        #     # post request
-        #     ret = _post(
-        #         'https://poloniex.com/tradingApi',
-        #         data=args,
-        #         headers={
-        #             'Sign': sign.hexdigest(),
-        #             'Key': self.__api_key
-        #         },
-        #         timeout=self.__timeout)
-        #     print("Transaction successfully performed crypto {}  recieved {} currency  {} ".format(amount_of_crypto,reciever_address,currency))
-        #     return _loads(ret.text, parse_float=str)
-        #
-        # except Exception as ex:
-        #     print(ex)
+
+        args = {"currency": currency_name, "amount": amount_of_crypto, "address": reciever_address,
+                'command' : 'withdraw' , 'nonce' : self.get_nonce() }
+
+        try:
+            # encode arguments for url
+            postData = _urlencode(args)
+            # sign postData with our Secret
+            sign = _new(
+                self.__secret_key.encode('utf-8'),
+                postData.encode('utf-8'),
+                _sha512)
+            # post request
+            ret = _post(
+                'https://poloniex.com/tradingApi',
+                data=args,
+                headers={
+                    'Sign': sign.hexdigest(),
+                    'Key': self.__api_key
+                },
+                timeout=self.__timeout)
+            print("Transaction successfully performed crypto {}  recieved {} currency  {} ".format(amount_of_crypto,reciever_address,currency))
+            return _loads(ret.text, parse_float=str)
+
+        except Exception as ex:
+            print(ex)
         return {"currency": currency, "amount": amount_of_crypto, "address": reciever_address}
 
         
     def get_btc_balance(self):
         pass
-        # args = {'command': 'returnBalances', 'nonce': self.get_nonce()}
-        #
-        # try:
-        #     # encode arguments for url
-        #     postData = _urlencode(args)
-        #     # sign postData with our Secret
-        #     sign = _new(
-        #         self.__secret_key.encode('utf-8'),
-        #         postData.encode('utf-8'),
-        #         _sha512)
-        #     # post request
-        #     ret = _post(
-        #         'https://poloniex.com/tradingApi',
-        #         data=args,
-        #         headers={
-        #             'Sign': sign.hexdigest(),
-        #             'Key': self.__api_key
-        #         },
-        #         timeout=self.__timeout)
-        #
-        #     return _loads(ret.text, parse_float=str)['BTC']
+        args = {'command': 'returnBalances', 'nonce': self.get_nonce()}
 
-        # except Exception as ex:
-        #     print(ex)
-        return 0.101 ### This is default value
-             
+        try:
+            # encode arguments for url
+            postData = _urlencode(args)
+            # sign postData with our Secret
+            sign = _new(
+                self.__secret_key.encode('utf-8'),
+                postData.encode('utf-8'),
+                _sha512)
+            # post request
+            ret = _post(
+                'https://poloniex.com/tradingApi',
+                data=args,
+                headers={
+                    'Sign': sign.hexdigest(),
+                    'Key': self.__api_key
+                },
+                timeout=self.__timeout)
+
+            return _loads(ret.text, parse_float=str)['BTC']
+
+        except Exception as ex:
+            print(ex)
+            return 0.101 ### This is default value
+
 ###########################################
     def  get_remain_money(self,currency):
         if CURRENCIES.BitCoin == currency:

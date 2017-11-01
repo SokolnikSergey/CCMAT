@@ -106,13 +106,15 @@ class BuyCoinsWindow(QWidget):
         self.__warning_window.on_ok.connect(self.on_ok_warning)
         self.__warning_window.on_cancel.connect(self.on_cancel_warning)
 
+        self.__label_enter_wallet.setStyleSheet("color: rgb(66, 101, 244);")
+
     def on_qr_decoded(self, wallet):
 
         self.__wallet = self.prepareWalletAddress(wallet)
         print(self.__wallet)
         self.__session_configurator.reciecer_address_decoded(self.__wallet)
         self.__wallet = self.prepareWallet(self.__wallet)
-        self.__label_enter_wallet.setText("Ваш колек:\n\n"+self.__wallet+TEXT_CONSTANTS.BUY_COINS_WINDOW_TIP1)
+        self.__label_enter_wallet.setText(TEXT_CONSTANTS.BUY_COINS_IMG_WALLET+"<br><br>Ваш колек:<br>"+self.__wallet+TEXT_CONSTANTS.BUY_COINS_WINDOW_TIP1)
         print("eeerr")
         self.__widget_qr_scanner.hide()
         self.__session_configurator.monet_revieved_from_bill_acceptor.connect(self.on_money_keeped)
@@ -140,7 +142,7 @@ class BuyCoinsWindow(QWidget):
             self.__widget_bill_acceptor.show()
             self.__button_buy.hide()
             self.__button_buy.setText(TEXT_CONSTANTS.BUY_COINS_WINDOW_BUY_BUTTON)
-            self.__label_enter_wallet.setText("Ваш кошелек:\n\n"+self.__wallet)
+            self.__label_enter_wallet.setText(TEXT_CONSTANTS.BUY_COINS_IMG_WALLET+"<br><br>Ваш кошелек:<br>"+self.__wallet)
 
     def on_bill_accepted(self, bills):
         print("12312qq")
@@ -154,7 +156,7 @@ class BuyCoinsWindow(QWidget):
             print("111111")
             self.calculate_crypto_coins()
         elif(self.__widget_qr_scanner.isHidden() and self.__widget_bill_acceptor.bills == 0):
-            self.__label_enter_wallet.setText("Ваш кошелек:\n\n"+self.__wallet)
+            self.__label_enter_wallet.setText(TEXT_CONSTANTS.BUY_COINS_IMG_WALLET+"<br><br>Ваш кошелек:<br>"+self.__wallet)
 
     def calculate_crypto_coins(self):
         self.__session_configurator.recieved_money_bill_acceptor(self.__widget_bill_acceptor.bills)
@@ -168,8 +170,7 @@ class BuyCoinsWindow(QWidget):
             self.deleteLater()
 
     def on_money_keeped(self, coins):
-        self.__label_enter_wallet.setText(
-            "Ваш кошелек:\n" + self.__wallet + "\n\nБудет переведено: " + str(coins) +" " + self.__crypto_currency)
+        self.__label_enter_wallet.setText(TEXT_CONSTANTS.BUY_COINS_IMG_WALLET+"<br><br>Ваш кошелек:<br>" + self.__wallet + "<br>Будет переведено: " + str(coins) +" " + self.__crypto_currency)
 
     def prepareWallet(self, wallet):
         count = 20

@@ -62,6 +62,7 @@ class BillAcceptorUI(QWidget):
 
 
         self.bills_server.money_received.connect(self.on_bill_accepted)
+        self.update_info()
 
 
     def on_bill_accepted(self, bill_denomination):
@@ -70,7 +71,7 @@ class BillAcceptorUI(QWidget):
         self.update_info()
 
     def update_info(self):
-        self.__label_enter_money.setText(TEXT_CONSTANTS.BILL_ACCEPTOR_WINDOW_AMOUNT_RECIEVED+"<br><br>"+str(self.bills)+"<br><br><img src=\"images/cash.png\">")
+        self.__label_enter_money.setText("<img src=\"images/cash.png\"><br><br>"+TEXT_CONSTANTS.BILL_ACCEPTOR_WINDOW_AMOUNT_RECIEVED+str(self.bills)+" ₴")
 
     def on_buttons_add(self):
         if(self.sender() == self.__button_add10):

@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QGraphicsDropShadowEffect
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QGraphicsDropShadowEffect, QTextEdit
 from PyQt5.QtGui import QFont, QIcon
 from PyQt5.Qt import Qt, QSize, QTimer, QDateTime, QDate, QTime, pyqtSignal, QFontDatabase
 from BuyCoinsWindow import BuyCoinsWindow
@@ -21,7 +21,6 @@ class MainWindow(QWidget):
 
         self.__session_configurator = session_configurator
         self.__bills_server = bills_server
-        print(1)
 
     def create_widgets(self):
         self.buy_coins_window = 0
@@ -30,6 +29,7 @@ class MainWindow(QWidget):
         self.__vlay_root = QVBoxLayout()
         self.__vlay_main = QVBoxLayout()
         self.__hlay_buttons_buy_coins = QHBoxLayout()
+        self.__hlay_menu_buttons = QHBoxLayout()
 
         self.__label_logo = QLabel("<img src=\"images/logo.png\">")
         self.__label_select_currency = QLabel(TEXT_CONSTANTS.MAIN_WINDOW_BUY_LABEL)
@@ -38,6 +38,9 @@ class MainWindow(QWidget):
         self.button_bitcoin = ImageButton("Bitcoin","images/bitcoin.png")
         self.__button_info = QPushButton(TEXT_CONSTANTS.MAIN_WINDOW_HELP_BUTTON)
         self.__button_others_currency = QPushButton(TEXT_CONSTANTS.MAIN_WINDOW_ALL_CURRENCIES_BUTTON)
+        self.__button_menu = QPushButton(TEXT_CONSTANTS.MAIN_WINDOW_MENU_BUTTON)
+        self.__button_user_accept = QPushButton(TEXT_CONSTANTS.MAIN_WINDOW_USER_ACCEPT)
+        self.__text_info = QTextEdit()
 
         self.__timer = QTimer()
         print(123)
@@ -47,22 +50,28 @@ class MainWindow(QWidget):
         self.__vlay_root.addWidget(self.__label_time_date)
         self.__vlay_root.addLayout(self.__vlay_main)
 
-        self.__vlay_main.setAlignment(Qt.AlignCenter)
+        #self.__vlay_main.setAlignment(Qt.AlignCenter)
         self.__vlay_main.setSpacing(0)
         self.__vlay_main.addWidget(self.__label_logo)
         self.__vlay_main.addStretch(0)
+        self.__vlay_main.addWidget(self.__text_info)
         self.__vlay_main.addWidget(self.__label_select_currency)
         self.__vlay_main.addSpacing(10)
         self.__vlay_main.addLayout(self.__hlay_buttons_buy_coins)
         self.__vlay_main.addStretch(0)
         self.__vlay_main.addSpacing(10)
         #self.__vlay_main.addWidget(self.__button_others_currency)
-        self.__vlay_main.addWidget(self.__button_info)
-        self.__vlay_main.setContentsMargins(0, 0, 0, 70)
+        self.__vlay_main.addLayout(self.__hlay_menu_buttons)
+        self.__hlay_menu_buttons.addWidget(self.__button_info)
+        self.__hlay_menu_buttons.addWidget(self.__button_menu)
+        self.__hlay_menu_buttons.addWidget(self.__button_user_accept)
+        self.__vlay_main.setContentsMargins(0, 0, 0, 0)
+        self.__vlay_root.setContentsMargins(0, 0, 0, 0)
 
         self.__hlay_buttons_buy_coins.addWidget(self.button_bitcoin)
 
         self.setLayout(self.__vlay_root)
+        self.__text_info.hide()
 
     def config_widgets(self):
 
@@ -75,12 +84,18 @@ class MainWindow(QWidget):
         self.__button_others_currency.setStyleSheet("QPushButton { background: rgb(66, 101, 244); color: white; border-radius: 5px; }"
                                                     "QPushButton:pressed { background: black; }")
         self.__button_info.setIcon(QIcon("images/info.png"))
-        self.__button_info.setIconSize(QSize(20, 20))
+        self.__button_info.setIconSize(QSize(40, 40))
 
-        self.__button_info.setStyleSheet("QPushButton { background: transparent; color: black; border-radius: 5px; }"
+        self.__button_info.setStyleSheet("QPushButton { background: rgb(66, 101, 244); color: white; border: none; }"
                                          "QPushButton:pressed { background: black; color: white }")
 
-        self.__button_info.setMinimumHeight(50)
+        self.__button_menu.setStyleSheet("QPushButton { background: rgb(66, 101, 244); color: white; border: none; }"
+                                         "QPushButton:pressed { background: black; color: white }")
+
+        self.__button_user_accept.setStyleSheet("QPushButton { background: rgb(66, 101, 244); color: white; border: none; }"
+                                         "QPushButton:pressed { background: black; color: white }")
+
+        self.__button_info.setMinimumHeight(70)
         self.__button_info.setFont(ubuntu_font)
         self.button_bitcoin.setFont(self.__button_info.font())
         self.__button_others_currency.setMinimumHeight(self.__button_info.minimumHeight())
@@ -89,6 +104,10 @@ class MainWindow(QWidget):
         self.__label_select_currency.setFont(self.__button_info.font())
         self.__label_select_currency.setAlignment(Qt.AlignCenter)
         self.__label_select_currency.setMinimumHeight(30)
+        self.__button_menu.setFont(ubuntu_font)
+        self.__button_user_accept.setFont(ubuntu_font)
+        self.__button_menu.setMinimumHeight(70)
+        self.__button_user_accept.setMinimumHeight(70)
 
         self.button_bitcoin.clicked.connect(self.on_crypt_selected)
 
@@ -102,6 +121,21 @@ class MainWindow(QWidget):
         self.__button_info.clicked.connect(self.on_button_help)
 
         self.__button_others_currency.clicked.connect(self.ob_button_other_curr)
+
+        self.__button_menu.hide()
+        self.__button_user_accept.setIcon(QIcon("images/user_accept.png"))
+        self.__button_user_accept.setIconSize(QSize(40, 40))
+        self.__button_user_accept.clicked.connect(self.on_button_user_accept)
+        self.__button_menu.setIconSize(QSize(40,40))
+        self.__button_menu.setIcon(QIcon("images/menu.png"))
+        self.__button_menu.clicked.connect(self.on_button_menu)
+
+        self.__text_info.setStyleSheet("background: transparent; border: none;")
+        self.__text_info.setReadOnly(True)
+        self.__text_info.setFont(ubuntu_font)
+        self.__text_info.setAlignment(Qt.AlignCenter)
+        self.__text_info.setMinimumHeight(300)
+
 
     def on_crypt_selected(self):
         self.inform_me.emit()
@@ -122,9 +156,55 @@ class MainWindow(QWidget):
         self.__label_time_date.setText("{0}.{1}.{2}, {3}:{4}".format(date.day(), date.month(), date.year(), time.hour(), time.minute()))
 
     def on_button_help(self):
-        self.__help_window = InfoUI()
-        self.__help_window.showFullScreen()
+        self.__button_info.hide()
+        self.__button_menu.show()
+        self.showInfo()
 
     def ob_button_other_curr(self):
         self.__other_curr_window = CryptoCurrenciesUI()
         self.__other_curr_window.showFullScreen()
+
+    def on_button_menu(self):
+        if(self.__button_info.isHidden()):
+            self.__button_info.show()
+        else:
+            self.__button_user_accept.show()
+        self.__button_menu.hide()
+        self.showMenu()
+
+    def on_button_user_accept(self):
+        self.__button_menu.show()
+        self.__button_user_accept.hide()
+        self.showUserAccept()
+
+
+    def showInfo(self):
+        self.hideMenu()
+        self.__text_info.show()
+        self.__text_info.setText(TEXT_CONSTANTS.INFO_INFO_TEXT)
+        if(not self.__button_menu.isHidden()):
+            self.__button_user_accept.show()
+
+    def showMenu(self):
+        self.__text_info.hide()
+        self.button_bitcoin.show()
+        self.__label_select_currency.show()
+
+    def hideMenu(self):
+        self.button_bitcoin.hide()
+        self.__label_select_currency.hide()
+
+    def showUserAccept(self):
+        self.hideMenu()
+        self.__text_info.show()
+        self.__text_info.setText(TEXT_CONSTANTS.INFO_USER_ACCEPT)
+        if(not self.__button_menu.isHidden()):
+            self.__button_info.show()
+
+    def hideInfoButton(self):
+        self.__button_info.hide()
+        self.__button_menu.show()
+
+    def hideUserAcceptButton(self):
+        self.__button_user_accept.hide()
+        self.__button_menu.show()
