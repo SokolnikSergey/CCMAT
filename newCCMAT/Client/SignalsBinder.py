@@ -3,7 +3,7 @@ from PyQt5.QtCore import QObject
 
 class SignalsBinder(QObject):
     def __init__(self, client_bankomat, interrupt_convertor, session_data_configurator, client_bill_validator=None,
-                 view_operator=None,qr_decoder=None,printer = None):
+                 view_operator=None,qr_decoder=None,printer = None,financial_updator = None):
         super(SignalsBinder, self).__init__()
 
         self.__interrupt_convertor = interrupt_convertor
@@ -16,6 +16,9 @@ class SignalsBinder(QObject):
         self.__view_operator = view_operator
         self.__printer = printer
 
+        self.__financial_updator = financial_updator
+
+        self.snapping_financial_updator_signal()
         self.snapping_client_bankomat_signals()
         self.snapping_signals_interrupt_convertor()
         self.snapping_session_data_configurator_signals()
@@ -49,3 +52,8 @@ class SignalsBinder(QObject):
 
     def snapping_qr_decoder_signals(self):
         self.__qr_decoder.qr_detected.connect(self.__session_data_configurator.reciecer_address_decoded)
+
+    def snapping_financial_updator_signal(self):
+        pass
+        # self.__financial_updator.noInternetConnection.connect()
+        # self.__financial_updator.internetConnectionResumed.connect()

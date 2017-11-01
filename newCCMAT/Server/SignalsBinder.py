@@ -1,6 +1,6 @@
 class SignalsBinder:
     def __init__(self,main_server = None, interrupt_convertor = None,balance_information_configurator = None
-                 ,action_queue = None,action_performer = None,db_transactor = None ):
+                 ,action_queue = None,action_performer = None,db_transactor = None):
         self.__main_server = main_server
         self.__interrupt_convertor = interrupt_convertor
         self.__balance_information_configurator = balance_information_configurator
@@ -28,5 +28,6 @@ class SignalsBinder:
     
     def snapping_interrupt_convertor_signals(self):
         self.__interrupt_convertor.response_has_made.connect(self.__main_server.write_data_to_socket)
-    
+
+
 

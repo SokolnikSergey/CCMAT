@@ -44,14 +44,11 @@ class Starter:
 		                                          self.__balance_information_configurator,self.__aux_info_container)
 		
 		self.__db_connector = DataBaseConnector(database="Bankomat")
-		self.__db_transactor = DataBaseTransactor(self.__db_connector)
+		self.__db_transactor = DataBaseTransactor(self.__db_connector.get_connector(self.__db_connector.config))
 		
 		self.__signals_binder =  SignalsBinder(self.__server,self.__interrupt_convertor,
 		        self.__balance_information_configurator,self.__action_queue,self.__action_performer,self.__db_transactor)
-	
-	
-		
-	
+
 		
 app = QApplication([])
 

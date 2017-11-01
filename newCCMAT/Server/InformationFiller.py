@@ -33,8 +33,11 @@ class InformationFiller:
 		
 		self.__config_parser.set( "AccountData", "API_KEY", "-1")
 		self.__config_parser.set("AccountData", "SECRET_KEY", "-1")
-		
-		
+
+		self.__config_parser.add_section("Support")
+
+		self.__config_parser.set("Support", "SupportNumber", "-1")
+
 		self.write_to_config_file()
 	
 	def write_to_config_file(self):
@@ -83,8 +86,20 @@ class InformationFiller:
 					self.___aux_information_container.wallet_address = wallet_address
 		return wallet_address
 
+	def read_support_number_from_ini(self):
+		support_number = None
+		if self.__config_parser is not None:
+			if "Support" in self.__config_parser:
+				support_number = self.__config_parser["Support"]["SupportNumber"]
+				if (support_number is not None) and self.___aux_information_container:
+					print(support_number)
+					self.___aux_information_container.support_number = support_number
+
+		return support_number
+
 	def fill_container_by_file_data(self):
 		self.read_owners_fee_from_ini()
 		self.read_api_key_from_ini()
 		self.read_secter_key_from_ini()
 		self.read_wallet_address_from_ini()
+		self.read_support_number_from_ini()

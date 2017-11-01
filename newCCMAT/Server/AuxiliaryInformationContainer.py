@@ -1,13 +1,14 @@
 from Interfaces.AuxiliaryInformationPublisher import AuxiliaryInformationPublisher
 
 class AuxiliaryInformationContainer(AuxiliaryInformationPublisher):
-	def __init__(self,owners_fee = -1,api_key = None,secret_key=None, wallet_address =None):
+	def __init__(self,owners_fee = -1,api_key = None,secret_key=None, wallet_address =None,support_number = None):
 		self.__owners_fee = owners_fee
 		
 		self.__api_key = api_key,
 		self.__secret_key = secret_key
-		self.__wallet_address  = wallet_address 
-		
+		self.__wallet_address  = wallet_address
+		self.__support_number = support_number
+
 		self.__subscribers =[]
 		
 	@property
@@ -50,7 +51,16 @@ class AuxiliaryInformationContainer(AuxiliaryInformationPublisher):
 		print("wallet address",new_wallet_address)
 		self.__wallet_address = new_wallet_address
 
-	
+
+	@property
+	def support_number(self):
+		return  self.__support_number
+
+	@support_number.setter
+	def support_number(self,new_support_number):
+		if(isinstance(new_support_number,str)):
+			self.__support_number = new_support_number
+
 	def update_owners_fee(self):
 			for subs in self.__subscribers:
 				subs.updated_owners_fee(self.__owners_fee)

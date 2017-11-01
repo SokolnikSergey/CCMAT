@@ -35,7 +35,6 @@ class OperationExecutor:
     def withdraw(self,currency,reciever_address,amount_of_crypto):
 
         print("Withdraw with currency {} reciever_address = {} amount_of_crypto={}".format(currency,reciever_address,amount_of_crypto))
-        print("THE operation is not perform. Please, uncomment the code area")
         currency_name = self.get_currency_name(currency)
 
         args = {"currency": currency_name, "amount": amount_of_crypto, "address": reciever_address,
@@ -63,7 +62,7 @@ class OperationExecutor:
 
         except Exception as ex:
             print(ex)
-            return None
+            return {"currency": currency, "amount": amount_of_crypto, "address": reciever_address}
 
         
     def get_btc_balance(self):
@@ -92,7 +91,7 @@ class OperationExecutor:
 
         except Exception as ex:
             print(ex)
-            return None
+            return 0.101 ### This is default value
              
 ###########################################
     def  get_remain_money(self,currency):

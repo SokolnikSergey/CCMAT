@@ -37,15 +37,8 @@ class Server(QObject):
         self.data_recieved.emit(sender, data)
 
     def write_data_to_socket(self, response_reciever, dict_data):
-        response_reciever.write(QByteArray().append(json.dumps(dict_data)))
-        self.terminate_connection_with_bankomat(response_reciever)
-
-
-
-
-
-#
-# connector = DataBaseConnector(database="bankomat")
-# conn = connector.get_connector(connector.config)
-# transactor = DataBaseTransactor(conn)
-# transactor.result_of_withdraw("1", "2", "imei_bankomat123", "BEL Minsk", "BTC", 1.111111, 0.366)
+        try:
+            response_reciever.write(QByteArray().append(json.dumps(dict_data)))
+            self.terminate_connection_with_bankomat(response_reciever)
+        except Exception as ex:
+            print("Exception during writing data ot socket!", ex)

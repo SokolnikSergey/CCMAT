@@ -47,10 +47,15 @@ class ActionPerformer(QObject):
                     ##self.action_done.emit(sender, response,response_errors, action_type)
                                         
             elif action_type == ACTIONS.Withdraw:
+
                 if(self.__operations_executor.withdraw(data["currency"],data["reciever"],data["amount"])):
-                    
+
+
+                    date_time = datetime.now()
+                    date = date_time.strftime("%y-%m-%d")
+                    time =  date_time.strftime("%H-%M-%S")
+
                     self.__balance_inforation_configurator.take_into_account_btc_outflow(data["currency"],data["amount"])
-                    
                     reciever_address = data["reciever"]
                     imei = data["imei"]
                     location = data["location"]
@@ -58,12 +63,12 @@ class ActionPerformer(QObject):
                     crypto_amount  = data["amount"]
                     amount_real = data["amount_real"]
 
-
+                    print(self.__aux_info_container)
                     response_errors = []
                     response = {"currency": currency,
                                 "amount": crypto_amount,
                                 "reciever" : reciever_address,
-                                "date_time": datetime.now(),
+                                "date_time": (date,time),
                                 "cryptomat_location":location,
                                 "support": self.__aux_info_container.support_number
                                 }

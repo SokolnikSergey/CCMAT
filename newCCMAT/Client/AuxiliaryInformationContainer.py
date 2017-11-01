@@ -3,7 +3,8 @@ class AuxiliaryInformationContainer():
 	def __init__(self,imei = "",location=""):
 	
 		self.__imei = imei
-		self.__location = location				
+		self.__location = location
+
 		
 	@property
 	def imei(self):
