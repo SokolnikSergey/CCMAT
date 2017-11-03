@@ -38,6 +38,10 @@ class InformationFiller:
 
 		self.__config_parser.set("Support", "SupportNumber", "-1")
 
+		self.__config_parser.add_section("Support")
+
+		self.__config_parser.set("Support", "TestMode", "1")
+
 		self.write_to_config_file()
 	
 	def write_to_config_file(self):
@@ -96,6 +100,17 @@ class InformationFiller:
 					self.___aux_information_container.support_number = support_number
 
 		return support_number
+	
+
+	def read_test_mode_from_ini(self):
+		test_mode = None
+		if self.__config_parser is not None:
+			if "Support" in self.__config_parser:
+				test_mode = self.__config_parser["Support"]["TestMode"]
+				if (test_mode is not None) and self.___aux_information_container:
+					print(test_mode)
+					self.___aux_information_container.test_mode = test_mode
+		return test_mode
 
 	def fill_container_by_file_data(self):
 		self.read_owners_fee_from_ini()
@@ -103,3 +118,4 @@ class InformationFiller:
 		self.read_secter_key_from_ini()
 		self.read_wallet_address_from_ini()
 		self.read_support_number_from_ini()
+		self.read_test_mode_from_ini()

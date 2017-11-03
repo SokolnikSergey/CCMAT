@@ -37,6 +37,10 @@ class OperationExecutor:
         print("Withdraw with currency {} reciever_address = {} amount_of_crypto={}".format(currency,reciever_address,amount_of_crypto))
         currency_name = self.get_currency_name(currency)
 
+        if self.__aux_info_container.test_mode == '1':
+            print("In test mode !!!!!!!")
+            return {"currency": currency, "amount": amount_of_crypto, "address": reciever_address}
+
         args = {"currency": currency_name, "amount": amount_of_crypto, "address": reciever_address,
                 'command' : 'withdraw' , 'nonce' : self.get_nonce() }
 
@@ -62,7 +66,6 @@ class OperationExecutor:
 
         except Exception as ex:
             print(ex)
-        return {"currency": currency, "amount": amount_of_crypto, "address": reciever_address}
 
         
     def get_btc_balance(self):

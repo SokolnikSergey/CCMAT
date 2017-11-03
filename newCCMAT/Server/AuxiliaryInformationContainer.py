@@ -1,16 +1,26 @@
 from Interfaces.AuxiliaryInformationPublisher import AuxiliaryInformationPublisher
 
 class AuxiliaryInformationContainer(AuxiliaryInformationPublisher):
-	def __init__(self,owners_fee = -1,api_key = None,secret_key=None, wallet_address =None,support_number = None):
+	def __init__(self,owners_fee = -1,api_key = None,secret_key=None, wallet_address =None,support_number = None,test_mode ='1'):
 		self.__owners_fee = owners_fee
 		
 		self.__api_key = api_key,
 		self.__secret_key = secret_key
 		self.__wallet_address  = wallet_address
 		self.__support_number = support_number
+		
+		self.__test_mode = test_mode
 
 		self.__subscribers =[]
-		
+
+	@property
+	def test_mode(self):
+		return self.__test_mode
+
+	@test_mode.setter
+	def test_mode(self, new_test_mode):
+		self.__test_mode = new_test_mode
+
 	@property
 	def owners_fee(self):
 		return self.__owners_fee
